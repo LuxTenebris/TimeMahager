@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.mikhailtalancev.myapplication.AddTaskActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGrey">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_marginLeft="-100pt"
+            android:layout_height="match_parent"
+            android:scaleType="matrix"
+            />
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

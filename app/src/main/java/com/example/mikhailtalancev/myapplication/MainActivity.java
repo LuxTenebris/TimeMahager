@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity  {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.addTask:
-
+                Intent intent = new Intent(this, AddTaskActivity.class);
+                startActivity(intent);
                 return true;
 
             case id.settings:
