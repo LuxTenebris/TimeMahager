@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mikhailtalancev.myapplication.MainActivity"
-    android:orientation="horizontal">
+    android:orientation="vertical">
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="90dp"
-        android:background="@color/colorGrey">
+        android:background="@drawable/liner_layout">
         <ImageView
             android:layout_marginTop="5dp"
             android:id="@+id/avatar_image"
@@ -43,6 +45,44 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"></LinearLayout>
+        android:layout_height="380dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/liner_layout">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <Button
+            android:layout_marginTop="5dp"
+            android:id="@+id/dayTask"
+            android:text="DayTasks"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/futureTasks"
+            android:text="FutureTasks"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/groupTask"
+            android:text="GroupTasks"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/cyclicTask"
+            android:text="CyclicTask"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/archive"
+            android:text="Archive"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+        </TableLayout>
+    </LinearLayout>
 </LinearLayout>

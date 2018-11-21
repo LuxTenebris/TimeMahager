@@ -2,4 +2,9 @@
     <string name="app_name">TimeManager</string>
     <string name="user_name">YouName</string>
     <string name="level">Lv 1</string>
+    <string-array name="importantlist">
+        <item>Low</item>
+        <item>Middle</item>
+        <item>High</item>
+    </string-array>
 </resources>
