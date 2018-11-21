@@ -1,19 +1,29 @@
 package com.example.mikhailtalancev.myapplication;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class AddTaskActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button btnAdd;
+    int DIALOG_DATE = 1;
+    int myYear = 2018;
+    int myMonth = 12;
+    int myDay = 14;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +32,6 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
         btnAdd = (Button) findViewById(R.id.add_task);
         btnAdd.setOnClickListener(this);
-
     }
 
 
@@ -52,6 +61,29 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    public void onclick(View view) {
+        showDialog(DIALOG_DATE);
+    }
+
+
+    protected Dialog onCreateDialog(int id) {
+        if (id == DIALOG_DATE) {
+            DatePickerDialog tpd = new DatePickerDialog(this, myCallBack, myYear, myMonth, myDay);
+            return tpd;
+        }
+        return super.onCreateDialog(id);
+    }
+
+    DatePickerDialog.OnDateSetListener myCallBack = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            myYear = year;
+            myMonth = monthOfYear;
+            myDay = dayOfMonth;
+        }
+    };
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -62,11 +94,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
                 if (name.getText().toString().trim().length() == 0){
                     Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (description.getText().toString().trim().length() == 0){
-                        Toast.makeText(this, "You did not enter a description", Toast.LENGTH_SHORT).show();
-                    } else {
 
-                    }
                 }
 
                 break;
