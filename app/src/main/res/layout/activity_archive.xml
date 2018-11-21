@@ -16,7 +16,7 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/liner_layout"
             android:layout_height="wrap_content"
-            android:layout_weight="70dp"
+
             android:text="SoloTask"/>
         <Button
             android:id="@+id/ArchiveGroupTask"
@@ -25,7 +25,7 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/liner_layout"
             android:layout_height="wrap_content"
-            android:layout_weight="70dp"
+
             android:text="GroupTask"/>
         <Button
             android:id="@+id/ArchiveCyclicTask"
@@ -34,7 +34,6 @@
             android:layout_marginRight="5dp"
             android:background="@drawable/liner_layout"
             android:layout_height="wrap_content"
-            android:layout_weight="70dp"
             android:text="CyclicTask"/>
     </TableLayout>
 
