@@ -20,14 +20,13 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddTaskActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddTaskActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnAdd;
     int DIALOG_DATE = 1;
@@ -96,18 +95,19 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.add_task:
                 EditText name = (EditText) findViewById(R.id.add_task_name);
                 EditText description = (EditText) findViewById((R.id.task_description));
                 Spinner priority = (Spinner) findViewById(R.id.task_priority);
-                if (name.getText().toString().trim().length() == 0){
+                if (name.getText().toString().trim().length() == 0) {
                     Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
                 } else {
 
 
-                break;
+                    break;
 
+                }
         }
     }
 }
