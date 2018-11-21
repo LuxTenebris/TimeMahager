@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TimeManager</string>
+    <string name="user_name">YouName</string>
+    <string name="level">Lv 1</string>
 </resources>
