@@ -8,12 +8,6 @@
         app:showAsAction="never">
     </item>
 
-    <item
-        android:id="@+id/theme"
-        android:icon="@android:drawable/ic_menu_view"
-        android:title="Theme"
-        app:showAsAction="never">
-    </item>
 
     <item
         android:id="@+id/profile"

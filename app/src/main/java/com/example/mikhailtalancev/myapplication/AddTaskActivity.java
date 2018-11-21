@@ -54,15 +54,14 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.settings:
-
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
                 return true;
 
-            case R.id.theme:
-
-                return true;
 
             case R.id.profile:
-
+                Intent intent1 = new Intent(this, ProfileActivity.class);
+                startActivity(intent1);
                 return true;
 
             default:

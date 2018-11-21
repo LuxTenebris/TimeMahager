@@ -56,10 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent1);
                 return true;
 
-            case id.theme:
-
-                return true;
-
             case id.profile:
                 Intent intent2 = new Intent(this, ProfileActivity.class);
                 startActivity(intent2);
