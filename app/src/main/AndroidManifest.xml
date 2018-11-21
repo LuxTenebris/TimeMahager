@@ -24,7 +24,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddTaskActivity"></activity>
+        <activity android:name=".AddTaskActivity" />
+        <activity android:name=".DayTaskActivity" />
+        <activity android:name=".FutureTaskActivity" />
+        <activity android:name=".GroupTaskActivity" />
+        <activity android:name=".CyclicTaskActivity" />
+        <activity android:name=".ArchiveActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".TaskActivity" />
+        <activity android:name=".GroupActivity"></activity>
     </application>
 
 </manifest>
