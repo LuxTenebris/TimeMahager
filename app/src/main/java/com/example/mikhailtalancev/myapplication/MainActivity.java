@@ -12,12 +12,28 @@ import android.widget.Toast;
 
 import static com.example.mikhailtalancev.myapplication.R.*;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button btnDay ;
+    Button btnFuture;
+    Button btnGroup;
+    Button btnCyclic;
+    Button btnArchive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
+        btnDay = (Button) findViewById(id.dayTask);
+        btnDay.setOnClickListener(this);
+        btnFuture = (Button) findViewById(id.futureTasks);
+        btnFuture.setOnClickListener(this);
+        btnArchive = (Button) findViewById(id.archive);
+        btnArchive.setOnClickListener(this);
+        btnCyclic = (Button) findViewById(id.cyclicTask);
+        btnCyclic.setOnClickListener(this);
+        btnGroup = (Button) findViewById(id.groupTask);
+        btnGroup.setOnClickListener(this);
 
     }
 
@@ -36,7 +52,8 @@ public class MainActivity extends AppCompatActivity  {
                 return true;
 
             case id.settings:
-
+                Intent intent1 = new Intent(this, SettingsActivity.class);
+                startActivity(intent1);
                 return true;
 
             case id.theme:
@@ -44,7 +61,8 @@ public class MainActivity extends AppCompatActivity  {
                 return true;
 
             case id.profile:
-
+                Intent intent2 = new Intent(this, ProfileActivity.class);
+                startActivity(intent2);
                 return true;
 
             default:
@@ -52,4 +70,31 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case id.dayTask:
+                Intent intent = new Intent(this, DayTaskActivity.class);
+                startActivity(intent);
+                break;
+            case id.futureTasks:
+                Intent intent1 = new Intent(this, FutureTaskActivity.class);
+                startActivity(intent1);
+                break;
+            case id.groupTask:
+                Intent intent3 = new Intent(this, GroupTaskActivity.class);
+                startActivity(intent3);
+                break;
+            case id.cyclicTask:
+                Intent intent4 = new Intent(this, CyclicTaskActivity.class);
+                startActivity(intent4);
+                break;
+            case id.archive:
+                Intent intent5 = new Intent(this, ArchiveActivity.class);
+                startActivity(intent5);
+                break;
+
+
+        }
+    }
 }
