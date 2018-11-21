@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context="com.example.mikhailtalancev.myapplication.ArchiveActivity">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/ArchiveSoloTask"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/liner_layout"
+            android:layout_height="wrap_content"
+            android:layout_weight="70dp"
+            android:text="SoloTask"/>
+        <Button
+            android:id="@+id/ArchiveGroupTask"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/liner_layout"
+            android:layout_height="wrap_content"
+            android:layout_weight="70dp"
+            android:text="GroupTask"/>
+        <Button
+            android:id="@+id/ArchiveCyclicTask"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/liner_layout"
+            android:layout_height="wrap_content"
+            android:layout_weight="70dp"
+            android:text="CyclicTask"/>
+    </TableLayout>
+
 </android.support.constraint.ConstraintLayout>

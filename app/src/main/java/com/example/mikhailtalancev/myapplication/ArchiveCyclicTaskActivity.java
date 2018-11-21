@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ArchiveGroupTask extends AppCompatActivity {
+public class ArchiveCyclicTaskActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_archive_group_task);
+        setContentView(R.layout.activity_archive_cyclic);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
