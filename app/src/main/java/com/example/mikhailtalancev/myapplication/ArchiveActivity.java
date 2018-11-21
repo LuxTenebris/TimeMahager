@@ -10,15 +10,20 @@ import android.widget.Button;
 
 public class ArchiveActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnSolo = (Button) findViewById(R.id.ArchiveSoloTask);
-    Button btnGroup = (Button) findViewById(R.id.ArchiveGroupTask);
-    Button btnCyclic = (Button) findViewById(R.id.ArchiveCyclicTask);
-
+    Button btnSolo;
+    Button btnGroup;
+    Button btnCyclic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
+        btnSolo = (Button) findViewById(R.id.ArchiveSoloTask);
+        btnGroup = (Button) findViewById(R.id.ArchiveGroupTask);
+        btnCyclic = (Button) findViewById(R.id.ArchiveCyclicTask);
+        btnSolo.setOnClickListener(this);
+        btnCyclic.setOnClickListener(this);
+        btnGroup.setOnClickListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
