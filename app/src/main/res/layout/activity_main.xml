@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="90dp"
+        android:onClick="onclick"
         android:background="@drawable/liner_layout">
         <ImageView
             android:layout_marginTop="5dp"
