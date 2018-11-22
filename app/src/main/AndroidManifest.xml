@@ -34,7 +34,9 @@
         <activity android:name=".GroupActivity" />
         <activity android:name=".ArchiveGroupTaskActivity" />
         <activity android:name=".ArchiveCyclicTaskActivity" />
-        <activity android:name=".ArchiveSoloTaskActivity"></activity>
+        <activity android:name=".ArchiveSoloTaskActivity" />
+        <activity android:name=".AddGroupActivity" />
+        <activity android:name=".AddCyclicTaskActivity"></activity>
     </application>
 
 </manifest>
