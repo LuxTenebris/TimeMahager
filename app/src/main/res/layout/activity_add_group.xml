@@ -6,4 +6,73 @@
     android:layout_height="match_parent"
     tools:context=".AddGroupActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/colorWhite"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:singleLine="true"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:hint="GroupName"
+                android:layout_marginTop="0dp"
+                android:id="@+id/add_group_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/group_description"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:hint="Description of your group"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:id="@+id/setDateGroup"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:background="@drawable/edit_text_style"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:onClick="onclick"
+            android:text="SetDate"/>
+
+        <Button
+            android:layout_marginTop="40dp"
+            android:id="@+id/add_group"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:textSize="10sp"
+            android:background="@drawable/edit_text_style"
+            android:layout_height="wrap_content"
+            android:text="AddGroup"/>
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>

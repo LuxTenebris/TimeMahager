@@ -68,7 +68,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:background="@drawable/edit_text_style"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:textSize="10sp"
             android:onClick="onclick"
             android:text="SetDate"/>
@@ -76,6 +76,7 @@
         <Button
             android:layout_marginTop="40dp"
             android:id="@+id/add_task"
+            android:textSize="10sp"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:background="@drawable/edit_text_style"
