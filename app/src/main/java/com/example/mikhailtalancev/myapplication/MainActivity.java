@@ -1,5 +1,9 @@
 package com.example.mikhailtalancev.myapplication;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +17,9 @@ import android.widget.Toast;
 import static com.example.mikhailtalancev.myapplication.R.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+    private final int IDD_LIST_ADD = 1;
 
     Button btnDay ;
     Button btnFuture;
@@ -47,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.addTask:
-                Intent intent = new Intent(this, AddTaskActivity.class);
-                startActivity(intent);
+                showDialog(IDD_LIST_ADD);
+
                 return true;
 
             case id.settings:
@@ -98,4 +105,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+
+            case IDD_LIST_ADD:
+
+                final String[] mAddName = {"SoloTask", "GroupOfTask", "CyclicTask"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Choose what you want to add."); // заголовок для диалога
+
+                builder.setItems(mAddName, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int item) {
+
+                        Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
+                        Intent intent1 = new Intent(MainActivity.this, AddGroupActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, AddCyclicTaskActivity.class);
+
+                        switch (item) {
+                            case 0:
+                                startActivity(intent);
+                                break;
+
+                            case 1:
+                                startActivity(intent1);
+                                break;
+
+                            case 2:
+                                startActivity(intent2);
+                                break;
+                        }
+                    }
+                });
+                builder.setCancelable(false);
+                return builder.create();
+
+            default:
+                return null;
+        }
+    }
 }
+
