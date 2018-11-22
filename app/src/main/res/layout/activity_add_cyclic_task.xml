@@ -38,7 +38,7 @@
             android:layout_marginLeft="5dp"
             android:background="@drawable/edit_text_style"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:layout_marginTop="20dp">
 
             <EditText
@@ -61,9 +61,38 @@
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="SetDate"/>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/setTimeCyclicStart"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:background="@drawable/edit_text_style"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="SetTimeStart"
+                android:onClick="onclick"/>
+            <Button
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/setTimeCyclicEnd"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:background="@drawable/edit_text_style"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="SetTimeEnd"
+                android:onClick="onclick1"/>
+
+        </LinearLayout>
 
         <Button
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/add_cyclic_task"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"

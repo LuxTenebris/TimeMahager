@@ -1,5 +1,7 @@
 package com.example.mikhailtalancev.myapplication;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -62,6 +65,36 @@ public class AddCyclicTaskActivity extends AppCompatActivity implements View.OnC
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    int DIALOG_TIME = 1;
+    int myHour = 14;
+    int myMinute = 0;
+
+    public void onclick(View view) {
+        showDialog(DIALOG_TIME);
+        note.put("HourStart", myHour);
+        note.put("MinuteStart", myMinute);
+    }
+
+    public void onclick1(View view){
+        showDialog(DIALOG_TIME);
+        note.put("HourEnd", myHour);
+        note.put("MinuteEnd", myMinute);
+    }
+    protected Dialog onCreateDialog(int id) {
+        if (id == DIALOG_TIME) {
+            TimePickerDialog tpd = new TimePickerDialog(this, myCallBack, myHour, myMinute, true);
+            return tpd;
+        }
+        return super.onCreateDialog(id);
+    }
+
+    TimePickerDialog.OnTimeSetListener myCallBack = new TimePickerDialog.OnTimeSetListener() {
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            myHour = hourOfDay;
+            myMinute = minute;
+        }
+    };
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
