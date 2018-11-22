@@ -1,17 +1,41 @@
 package com.example.mikhailtalancev.myapplication;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class AddCyclicTaskActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.mikhailtalancev.myapplication.R.id.setDateCyclic;
+
+public class AddCyclicTaskActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button btnAdd;
+    Button bntSetDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cyclic_task);
+
+        bntSetDate = (Button) findViewById(R.id.setDateCyclic);
+        bntSetDate.setOnClickListener(this);
+        btnAdd = (Button) findViewById(R.id.add_cyclic_task);
+        btnAdd.setOnClickListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,4 +63,48 @@ public class AddCyclicTaskActivity extends AppCompatActivity {
         }
     }
 
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    Map<String, Object> note = new HashMap<>();
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.add_cyclic_task:
+                EditText name = (EditText) findViewById(R.id.add_cyclic_task_name);
+                EditText description = (EditText) findViewById((R.id.cyclicTask_description));
+                if (name.getText().toString().trim().length() == 0) {
+                    Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
+                } else {
+                    note.put("name", name.getText().toString());
+                    note.put("description", description.getText().toString());
+
+                    db.collection("cyclicTasks")
+                            .add(note)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("Tag", "Error adding document", e);
+                                }
+                            });
+                    Toast.makeText(this, "You add a cyclicTask", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                    break;
+
+                }
+            case R.id.setDateCyclic:
+
+                break;
+        }
+
+    }
 }
