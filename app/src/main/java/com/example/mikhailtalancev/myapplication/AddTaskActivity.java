@@ -3,11 +3,8 @@ package com.example.mikhailtalancev.myapplication;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateUtils;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,14 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddTaskActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -91,6 +81,8 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
             myDay = dayOfMonth;
         }
     };
+
+
 
     @Override
     public void onClick(View view) {
