@@ -4,7 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +16,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddTaskActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -77,12 +85,14 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
             myYear = year;
-            myMonth = monthOfYear;
+            myMonth = monthOfYear + 1;
             myDay = dayOfMonth;
         }
     };
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    Map<String, Object> note = new HashMap<>();
 
     @Override
     public void onClick(View view) {
@@ -94,8 +104,31 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
                 if (name.getText().toString().trim().length() == 0) {
                     Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
                 } else {
+                    note.put("name", name.getText().toString());
+                    note.put("description", description.getText().toString());
+                    note.put("priority", priority.getSelectedItem().toString());
+                    note.put("year", myYear);
+                    note.put("month", myMonth);
+                    note.put("day", myDay);
+                    note.put("group_id",0);
 
-
+                    db.collection("notes")
+                            .add(note)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w("Tag", "Error adding document", e);
+                                }
+                            });
+                    Toast.makeText(this, "You add a task", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
                     break;
 
                 }
