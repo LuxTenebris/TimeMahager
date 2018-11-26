@@ -32,6 +32,7 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".TaskActivity" />
         <activity android:name=".GroupActivity" />
+        <activity android:name=".NoteActivity"/>
         <activity android:name=".ArchiveGroupTaskActivity" />
         <activity android:name=".ArchiveCyclicTaskActivity" />
         <activity android:name=".ArchiveSoloTaskActivity" />
