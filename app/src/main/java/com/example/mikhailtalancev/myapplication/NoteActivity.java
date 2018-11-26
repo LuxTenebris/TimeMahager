@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,10 @@ import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    DocumentReference docRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +41,8 @@ public class NoteActivity extends AppCompatActivity {
 
         String id = intent.getStringExtra("id");
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        docRef = db.collection("notes").document(id);
 
-        DocumentReference docRef = db.collection("notes").document(id);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -81,7 +85,16 @@ public class NoteActivity extends AppCompatActivity {
 
     }
 
+    public void onclick(View view) {
 
+        docRef.delete();
+
+        Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, DayTaskActivity.class);
+        startActivity(intent);
+
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_without_add, menu);
