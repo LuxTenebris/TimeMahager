@@ -30,7 +30,7 @@ public class NoteActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    DocumentReference docRef;
+    DocumentReference  docRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,48 +40,24 @@ public class NoteActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         String id = intent.getStringExtra("id");
+        String description = intent.getStringExtra("description");
+        String name = (String) intent.getStringExtra("name");
+        String priority = (String) intent.getStringExtra("priority");
+        String date = (String) intent.getStringExtra("date");
 
         docRef = db.collection("notes").document(id);
 
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
+        TextView note_name = (TextView) findViewById(R.id.NoteName);
+        note_name.setText(name);
 
-                        String description = (String) document.get("description");
-                        String name = (String) document.get("name");
-                        String priority = (String) document.get("priority");
-                        Long year = (Long) document.get("year");
-                        Long month = (Long) document.get("month");
-                        Long day = (Long) document.get("day");
-                        String date = String.valueOf(year) + "//" + String.valueOf(month) + "//" + String.valueOf(day);
+        TextView note_priority = (TextView) findViewById(R.id.NotePriority);
+        note_priority.setText(priority);
 
-                        TextView note_name = (TextView) findViewById(R.id.NoteName);
-                        note_name.setText(name);
+        TextView note_date = (TextView) findViewById(R.id.NoteDate);
+        note_date.setText(date);
 
-                        TextView note_priority = (TextView) findViewById(R.id.NotePriority);
-                        note_priority.setText(priority);
-
-                        TextView note_date = (TextView) findViewById(R.id.NoteDate);
-                        note_date.setText(date);
-
-                        TextView note_description = (TextView) findViewById(R.id.description);
-                        note_description.setText(description);
-
-
-                        Log.d("TAG", "DocumentSnapshot data: " + document.getData());
-                    } else {
-
-                        Log.d("TAG", "No such document");
-                    }
-                } else {
-                    Log.d("TAG", "get failed with ", task.getException());
-                }
-            }
-        });
-
+        TextView note_description = (TextView) findViewById(R.id.description);
+        note_description.setText(description);
 
     }
 

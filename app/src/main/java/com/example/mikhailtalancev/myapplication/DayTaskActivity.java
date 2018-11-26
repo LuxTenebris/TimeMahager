@@ -30,6 +30,10 @@ public class DayTaskActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     ArrayList<String> doc_id = new ArrayList<String>();
+    ArrayList<String> names = new ArrayList<String>();
+    ArrayList<String> priorities = new ArrayList<String>();
+    ArrayList<String> dates = new ArrayList<String>();
+    ArrayList<String> descriptions = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,12 @@ public class DayTaskActivity extends AppCompatActivity {
                                 Long year = (Long) document.get("year");
                                 Long month = (Long) document.get("month");
                                 Long day = (Long) document.get("day");
+                                String date = String.valueOf(year) + "//" + String.valueOf(month) + "//" + String.valueOf(day);
+
+                                names.add(name);
+                                priorities.add(priority);
+                                dates.add(date);
+                                descriptions.add((String) document.get("description"));
                                 doc_id.add(document.getId());
 
                                 int color;
@@ -70,7 +80,6 @@ public class DayTaskActivity extends AppCompatActivity {
                                     default: color = 1;
                                 }
 
-                                String date = String.valueOf(year) + "//" + String.valueOf(month) + "//" + String.valueOf(day);
                                 states.add(new State(name, priority, date, color));
 
                                 Log.d("TAG", document.getId() + " => " + document.get("name"));
@@ -89,6 +98,11 @@ public class DayTaskActivity extends AppCompatActivity {
                                     // получаем выбранный пункт
                                     Intent intent = new Intent(DayTaskActivity.this, NoteActivity.class);
                                     intent.putExtra("id", doc_id.get((int) id));
+                                    intent.putExtra("name", names.get((int) id));
+                                    intent.putExtra("description", descriptions.get((int) id));
+                                    intent.putExtra("date", dates.get((int) id));
+                                    intent.putExtra("priority", priorities.get((int) id));
+
                                     startActivity(intent);
                                 }
                             };
