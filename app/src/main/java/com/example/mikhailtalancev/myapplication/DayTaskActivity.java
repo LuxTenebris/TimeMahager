@@ -29,6 +29,8 @@ public class DayTaskActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    ArrayList<String> doc_id = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ public class DayTaskActivity extends AppCompatActivity {
                                 Long year = (Long) document.get("year");
                                 Long month = (Long) document.get("month");
                                 Long day = (Long) document.get("day");
+                                doc_id.add(document.getId());
 
                                 int color;
 
@@ -84,10 +87,8 @@ public class DayTaskActivity extends AppCompatActivity {
                                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                                     // получаем выбранный пункт
-                                    State selectedState = (State)parent.getItemAtPosition(position);
-                                    Toast.makeText(getApplicationContext(), "Был выбран пункт " + selectedState.getName(),
-                                            Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(DayTaskActivity.this, NoteActivity.class);
+                                    intent.putExtra("id", doc_id.get((int) id));
                                     startActivity(intent);
                                 }
                             };
