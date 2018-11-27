@@ -53,10 +53,7 @@ public class DayTaskActivity extends AppCompatActivity {
 
                                 String name = (String) document.get("name");
                                 String priority = (String) document.get("priority");
-                                Long year = (Long) document.get("year");
-                                Long month = (Long) document.get("month");
-                                Long day = (Long) document.get("day");
-                                String date = String.valueOf(year) + "//" + String.valueOf(month) + "//" + String.valueOf(day);
+                                String date = (String) document.get("date");
 
                                 names.add(name);
                                 priorities.add(priority);

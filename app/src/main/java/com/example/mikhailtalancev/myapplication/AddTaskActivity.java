@@ -104,12 +104,14 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
                 if (name.getText().toString().trim().length() == 0) {
                     Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
                 } else {
+
+                    String date = String.valueOf(myYear) + "//" + String.valueOf(myMonth) + "//" + String.valueOf(myDay);
+
+
                     note.put("name", name.getText().toString());
                     note.put("description", description.getText().toString());
                     note.put("priority", priority.getSelectedItem().toString());
-                    note.put("year", myYear);
-                    note.put("month", myMonth);
-                    note.put("day", myDay);
+                    note.put("date", date);
                     note.put("group_id",0);
 
                     db.collection("notes")

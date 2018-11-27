@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -24,13 +26,21 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NoteActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     DocumentReference  docRef;
+
+    String id;
+    String description;
+    String priority;
+    String name;
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +49,11 @@ public class NoteActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String id = intent.getStringExtra("id");
-        String description = intent.getStringExtra("description");
-        String name = (String) intent.getStringExtra("name");
-        String priority = (String) intent.getStringExtra("priority");
-        String date = (String) intent.getStringExtra("date");
+        id = intent.getStringExtra("id");
+        description = intent.getStringExtra("description");
+        name = (String) intent.getStringExtra("name");
+        priority = (String) intent.getStringExtra("priority");
+        date = (String) intent.getStringExtra("date");
 
         docRef = db.collection("notes").document(id);
 
@@ -61,7 +71,7 @@ public class NoteActivity extends AppCompatActivity {
 
     }
 
-    public void onclick(View view) {
+    public void onclickDelete(View view) {
 
         docRef.delete();
 
@@ -70,6 +80,32 @@ public class NoteActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DayTaskActivity.class);
         startActivity(intent);
 
+    }
+
+    public void onclickCansel(View view){
+
+        Map<String, Object> note = new HashMap<>();
+
+        note.put("name", name);
+        note.put("description", description);
+        note.put("date", date);
+        note.put("priority", priority);
+        note.put("group", "default");
+
+        db.collection("notes")
+                .add(note)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("Tag", "Error adding document", e);
+                    }
+                });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
