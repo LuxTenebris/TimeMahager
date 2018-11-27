@@ -5,13 +5,43 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class ArchiveNoteActivity extends AppCompatActivity {
+
+
+    String id;
+    String description;
+    String priority;
+    String name;
+    String date;
+    String success;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive_note);
+
+        Intent intent = getIntent();
+        success = intent.getStringExtra("success");
+        id = intent.getStringExtra("id");
+        description = intent.getStringExtra("description");
+        name = (String) intent.getStringExtra("name");
+        priority = (String) intent.getStringExtra("priority");
+        date = (String) intent.getStringExtra("date");
+
+        TextView note_name = (TextView) findViewById(R.id.ArchiveNoteName);
+        note_name.setText(name);
+
+        TextView note_priority = (TextView) findViewById(R.id.ArchiveNotePriority);
+        note_priority.setText(priority);
+
+        TextView note_date = (TextView) findViewById(R.id.ArchiveNoteDate);
+        note_date.setText(date);
+
+        TextView note_description = (TextView) findViewById(R.id.ArchiveDescription);
+        note_description.setText(description);
+
     }
 
 
