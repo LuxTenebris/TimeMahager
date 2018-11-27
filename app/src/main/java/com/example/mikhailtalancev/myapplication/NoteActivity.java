@@ -1,5 +1,8 @@
 package com.example.mikhailtalancev.myapplication;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -83,29 +86,94 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     public void onclickCansel(View view){
+        showDialog(1);
+    }
 
-        Map<String, Object> note = new HashMap<>();
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
 
-        note.put("name", name);
-        note.put("description", description);
-        note.put("date", date);
-        note.put("priority", priority);
-        note.put("group", "default");
+            case 1:
 
-        db.collection("notes")
-                .add(note)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                final String[] mAddName = {"Yes", "No"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Was task successful?"); // заголовок для диалога
+
+                builder.setItems(mAddName, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Tag", "Error adding document", e);
+                    public void onClick(DialogInterface dialog, int item) {
+
+                        Intent intent = new Intent(NoteActivity.this, DayTaskActivity.class);
+
+                        switch (item) {
+                            case 0:
+
+                                Map<String, Object> note = new HashMap<>();
+
+                                note.put("name", name);
+                                note.put("description", description);
+                                note.put("date", date);
+                                note.put("priority", priority);
+                                note.put("group", "default");
+                                note.put("success", "True");
+
+                                db.collection("archive_notes")
+                                        .add(note)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("Tag", "Error adding document", e);
+                                            }
+                                        });
+                                docRef.delete();
+                                startActivity(intent);
+                                break;
+
+                            case 1:
+
+                                Map<String, Object> note1 = new HashMap<>();
+
+                                note1.put("name", name);
+                                note1.put("description", description);
+                                note1.put("date", date);
+                                note1.put("priority", priority);
+                                note1.put("group", "default");
+                                note1.put("success", "False");
+
+                                db.collection("archive_notes")
+                                        .add(note1)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("Tag", "Error adding document", e);
+                                            }
+                                        });
+                                docRef.delete();
+                                startActivity(intent);
+                                break;
+
+                        }
                     }
                 });
+                builder.setCancelable(false);
+                return builder.create();
+
+            default:
+                return null;
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
