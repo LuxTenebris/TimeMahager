@@ -6,4 +6,6 @@
     <color name="colorAccent">#202323</color>
     <color name="colorGrey">#89c3f1</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorRed">#ce2c2c</color>
+    <color name="colorGreen">#dd39ef19</color>
 </resources>
