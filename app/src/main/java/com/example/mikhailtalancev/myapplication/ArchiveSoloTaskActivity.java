@@ -25,6 +25,7 @@ public class ArchiveSoloTaskActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    ArrayList<String> dates = new ArrayList<String>();
     ArrayList<String> doc_id = new ArrayList<String>();
     ArrayList<String> names = new ArrayList<String>();
     ArrayList<String> priorities = new ArrayList<String>();
@@ -57,6 +58,7 @@ public class ArchiveSoloTaskActivity extends AppCompatActivity {
                                 successes.add(success);
                                 descriptions.add((String) document.get("description"));
                                 doc_id.add(document.getId());
+                                dates.add((String) document.get("date"));
 
                                 int color;
 
@@ -86,8 +88,16 @@ public class ArchiveSoloTaskActivity extends AppCompatActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
+                                    // получаем выбранный пункт
+                                    Intent intent = new Intent(ArchiveSoloTaskActivity.this, ArchiveNoteActivity.class);
+                                    intent.putExtra("id", doc_id.get((int) id));
+                                    intent.putExtra("name", names.get((int) id));
+                                    intent.putExtra("description", descriptions.get((int) id));
+                                    intent.putExtra("date", dates.get((int) id));
+                                    intent.putExtra("priority", priorities.get((int) id));
+                                    intent.putExtra("success", successes.get((int) id));
 
-
+                                    startActivity(intent);
                                 }
                             };
 
