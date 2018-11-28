@@ -72,14 +72,14 @@ public class AddCyclicTaskActivity extends AppCompatActivity implements View.OnC
 
     public void onclick(View view) {
         showDialog(DIALOG_TIME);
-        note.put("HourStart", myHour);
-        note.put("MinuteStart", myMinute);
+        note.put("HourStart", String.valueOf(myHour));
+        note.put("MinuteStart", String.valueOf(myMinute));
     }
 
     public void onclick1(View view){
         showDialog(DIALOG_TIME);
-        note.put("HourEnd", myHour);
-        note.put("MinuteEnd", myMinute);
+        note.put("HourEnd", String.valueOf(myHour));
+        note.put("MinuteEnd", String.valueOf(myMinute));
     }
     protected Dialog onCreateDialog(int id) {
         if (id == DIALOG_TIME) {
@@ -113,7 +113,6 @@ public class AddCyclicTaskActivity extends AppCompatActivity implements View.OnC
                 } else {
                     note.put("name", name.getText().toString());
                     note.put("description", description.getText().toString());
-
                     db.collection("cyclicTasks")
                             .add(note)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
