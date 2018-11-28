@@ -106,6 +106,10 @@ public class AddGroupActivity extends AppCompatActivity implements View.OnClickL
                 if (name.getText().toString().trim().length() == 0) {
                     Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
                 } else {
+
+                    String date = String.valueOf(myYear) + "//" + String.valueOf(myMonth) + "//" + String.valueOf(myDay);
+
+                    note.put("date",date);
                     note.put("name", name.getText().toString());
                     note.put("description", description.getText().toString());
                     note.put("year", myYear);
