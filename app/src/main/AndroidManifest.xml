@@ -38,7 +38,8 @@
         <activity android:name=".ArchiveSoloTaskActivity" />
         <activity android:name=".AddGroupActivity" />
         <activity android:name=".AddCyclicTaskActivity" />
-        <activity android:name=".ArchiveNoteActivity"></activity>
+        <activity android:name=".ArchiveNoteActivity" />
+        <activity android:name=".CyclicNoteActivity"></activity>
     </application>
 
 </manifest>

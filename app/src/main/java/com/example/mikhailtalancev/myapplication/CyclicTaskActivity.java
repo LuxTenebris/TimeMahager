@@ -106,7 +106,7 @@ public class CyclicTaskActivity extends AppCompatActivity {
                                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                                     // получаем выбранный пункт
-                                    Intent intent = new Intent(CyclicTaskActivity.this, NoteActivity.class);
+                                    Intent intent = new Intent(CyclicTaskActivity.this, CyclicNoteActivity.class);
                                     intent.putExtra("id", doc_id.get((int) id));
                                     intent.putExtra("name", names.get((int) id));
                                     intent.putExtra("description", descriptions.get((int) id));

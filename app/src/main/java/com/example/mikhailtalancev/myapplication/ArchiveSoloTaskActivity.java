@@ -73,7 +73,7 @@ public class ArchiveSoloTaskActivity extends AppCompatActivity {
                                     default: color = 1;
                                 }
 
-                                states.add(new State(name, priority, success, color));
+                                states.add(new State(name, priority, (String) document.get("date"), color));
 
                                 Log.d("TAG", document.getId() + " => " + document.get("name"));
                             }

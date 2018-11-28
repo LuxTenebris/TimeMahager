@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CyclicNoteActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="@drawable/edit_text_style"
+            android:id="@+id/CyclicNote"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/CyclicNoteName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_gravity="top|left"
+                android:textSize="24sp">
+            </TextView>
+            <TextView
+                android:id="@+id/CyclicNoteStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="5dp">
+            </TextView>
+            <TextView
+                android:id="@+id/CyclicNoteEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginRight="5dp">
+            </TextView>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/CyclicNoteDescription"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text=""
+            />
+
+        <LinearLayout
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <Button
+                android:onClick="onclickDelete"
+                android:background="@drawable/edit_text_style"
+                android:layout_marginLeft="95dp"
+                android:textSize="12sp"
+                android:layout_width="90dp"
+                android:text="Delete"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"/>
+            <Button
+
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/edit_text_style"
+                android:textSize="12sp"
+                android:onClick="onclickCansel"
+                android:text="CanselTask"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
