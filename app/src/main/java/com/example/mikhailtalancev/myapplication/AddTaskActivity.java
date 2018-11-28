@@ -113,6 +113,9 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
                     note.put("priority", priority.getSelectedItem().toString());
                     note.put("date", date);
                     note.put("group_id",0);
+                    note.put("year", myYear);
+                    note.put("month", myMonth);
+                    note.put("day", myDay);
 
                     db.collection("notes")
                             .add(note)
