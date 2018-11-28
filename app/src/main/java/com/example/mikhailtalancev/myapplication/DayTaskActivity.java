@@ -21,8 +21,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.TimeZone;
 
 
 public class DayTaskActivity extends AppCompatActivity {
@@ -49,35 +51,49 @@ public class DayTaskActivity extends AppCompatActivity {
 
                             List<State> states = new ArrayList();
 
+                            Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+
+                            final Long currentYear = Long.valueOf(calendar.get(Calendar.YEAR));
+                            final Long currentMonth = Long.valueOf(calendar.get(Calendar.MONTH) + 1);
+                            final Long currentDay = Long.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+
+
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                String name = (String) document.get("name");
-                                String priority = (String) document.get("priority");
-                                String date = (String) document.get("date");
+                                if(((Long) document.get("year")).equals(currentYear)){
+                                    if(((Long) document.get("month")).equals(currentMonth)){
+                                        if(((Long) document.get("day")).equals(currentDay)){
+                                            String name = (String) document.get("name");
+                                            String priority = (String) document.get("priority");
+                                            String date = (String) document.get("date");
 
-                                names.add(name);
-                                priorities.add(priority);
-                                dates.add(date);
-                                descriptions.add((String) document.get("description"));
-                                doc_id.add(document.getId());
+                                            names.add(name);
+                                            priorities.add(priority);
+                                            dates.add(date);
+                                            descriptions.add((String) document.get("description"));
+                                            doc_id.add(document.getId());
 
-                                int color;
+                                            int color;
 
-                                assert priority != null;
-                                switch (priority){
-                                    case "High":
-                                        color = Color.parseColor("#6773b7");
-                                        break;
-                                    case "Middle":
-                                        color = Color.parseColor("#198f66");
-                                        break;
-                                    case "Low":
-                                        color = Color.parseColor("#89c3f1");
-                                        break;
-                                    default: color = 1;
+                                            assert priority != null;
+                                            switch (priority){
+                                                case "High":
+                                                    color = Color.parseColor("#6773b7");
+                                                    break;
+                                                case "Middle":
+                                                    color = Color.parseColor("#198f66");
+                                                    break;
+                                                case "Low":
+                                                    color = Color.parseColor("#89c3f1");
+                                                    break;
+                                                default: color = 1;
+                                            }
+
+                                            states.add(new State(name, priority, date, color));
+
+                                        }
+                                    }
                                 }
-
-                                states.add(new State(name, priority, date, color));
 
                                 Log.d("TAG", document.getId() + " => " + document.get("name"));
                             }
