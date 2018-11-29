@@ -14,7 +14,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -22,11 +25,15 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
 public class FutureTaskActivity extends AppCompatActivity {
 
+
+    DocumentReference doc_ref;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -61,35 +68,87 @@ public class FutureTaskActivity extends AppCompatActivity {
                             List<State> states = new ArrayList();
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if((Long) document.get("year") != currentYear || (Long) document.get("month") != currentMonth || (Long) document.get("day") != currentDay){
+
+                                boolean f = false;
+
+                                if((Long) document.get("year") < currentYear){
+                                    f = true;
+                                } else {
+                                    if(((Long) document.get("year")).equals(currentYear)){
+                                        if((Long) document.get("month") < currentMonth){
+                                            f = true;
+                                        } else {
+                                            if(((Long) document.get("month")).equals(currentMonth)){
+                                                if(((Long) document.get("day")) < currentDay){
+                                                    f = true;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if(f){
                                     String name = (String) document.get("name");
                                     String priority = (String) document.get("priority");
                                     String date = (String) document.get("date");
 
-                                    names.add(name);
-                                    priorities.add(priority);
-                                    dates.add(date);
-                                    descriptions.add((String) document.get("description"));
-                                    doc_id.add(document.getId());
+                                    Map<String, Object> note = new HashMap<>();
 
-                                    int color;
+                                    note.put("name", name);
+                                    note.put("description", document.get("description"));
+                                    note.put("date", date);
+                                    note.put("priority", priority);
+                                    note.put("group", "default");
+                                    note.put("success", "False");
 
-                                    assert priority != null;
-                                    switch (priority){
-                                        case "High":
-                                            color = Color.parseColor("#6773b7");
-                                            break;
-                                        case "Middle":
-                                            color = Color.parseColor("#198f66");
-                                            break;
-                                        case "Low":
-                                            color = Color.parseColor("#89c3f1");
-                                            break;
-                                        default: color = 1;
+                                    db.collection("archive_notes")
+                                            .add(note)
+                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                @Override
+                                                public void onSuccess(DocumentReference documentReference) {
+                                                    Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w("Tag", "Error adding document", e);
+                                                }
+                                            });
 
+
+                                } else {
+
+                                    if((Long) document.get("year") != currentYear || (Long) document.get("month") != currentMonth || (Long) document.get("day") != currentDay){
+                                        String name = (String) document.get("name");
+                                        String priority = (String) document.get("priority");
+                                        String date = (String) document.get("date");
+
+                                        names.add(name);
+                                        priorities.add(priority);
+                                        dates.add(date);
+                                        descriptions.add((String) document.get("description"));
+                                        doc_id.add(document.getId());
+
+                                        int color;
+
+                                        assert priority != null;
+                                        switch (priority){
+                                            case "High":
+                                                color = Color.parseColor("#6773b7");
+                                                break;
+                                            case "Middle":
+                                                color = Color.parseColor("#198f66");
+                                                break;
+                                            case "Low":
+                                                color = Color.parseColor("#89c3f1");
+                                                break;
+                                            default: color = 1;
+
+                                        }
+
+                                                states.add(new State(name, priority, date, color));
                                     }
-
-                                            states.add(new State(name, priority, date, color));
                                 }
 
                                 Log.d("TAG", document.getId() + " => " + document.get("name"));
