@@ -68,7 +68,7 @@ public class CyclicNoteActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, DayTaskActivity.class);
+        Intent intent = new Intent(this, CyclicTaskActivity.class);
         startActivity(intent);
 
     }
