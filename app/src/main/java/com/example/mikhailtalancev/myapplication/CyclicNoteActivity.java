@@ -72,6 +72,7 @@ public class CyclicNoteActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, CyclicTaskActivity.class);
         startActivity(intent);
+        finish();
 
     }
 
@@ -124,6 +125,7 @@ public class CyclicNoteActivity extends AppCompatActivity {
                                         });
                                 docRef.delete();
                                 startActivity(intent);
+                                finish();
                                 break;
 
                             case 1:
@@ -153,6 +155,7 @@ public class CyclicNoteActivity extends AppCompatActivity {
                                         });
                                 docRef.delete();
                                 startActivity(intent);
+                                finish();
                                 break;
 
                         }

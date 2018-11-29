@@ -87,6 +87,7 @@ public class NoteActivity extends AppCompatActivity {
             intent = new Intent(this, FutureTaskActivity.class);
         }
         startActivity(intent);
+        finish();
 
     }
 
@@ -114,7 +115,6 @@ public class NoteActivity extends AppCompatActivity {
                         if(tipe.equals("future")) {
                             intent = new Intent(NoteActivity.this, FutureTaskActivity.class);
                         }
-                        startActivity(intent);
 
                         switch (item) {
                             case 0:
@@ -144,6 +144,7 @@ public class NoteActivity extends AppCompatActivity {
                                         });
                                 docRef.delete();
                                 startActivity(intent);
+                                finish();
                                 break;
 
                             case 1:
@@ -173,6 +174,7 @@ public class NoteActivity extends AppCompatActivity {
                                         });
                                 docRef.delete();
                                 startActivity(intent);
+                                finish();
                                 break;
 
                         }

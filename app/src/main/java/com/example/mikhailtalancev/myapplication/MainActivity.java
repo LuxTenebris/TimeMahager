@@ -126,14 +126,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         switch (item) {
                             case 0:
                                 startActivity(intent);
+                                finish();
                                 break;
 
                             case 1:
                                 startActivity(intent1);
+                                finish();
                                 break;
 
                             case 2:
                                 startActivity(intent2);
+                                finish();
                                 break;
                         }
                     }
