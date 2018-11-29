@@ -82,18 +82,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case id.dayTask:
                 Intent intent = new Intent(this, DayTaskActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case id.futureTasks:
                 Intent intent1 = new Intent(this, FutureTaskActivity.class);
                 startActivity(intent1);
+                finish();
                 break;
             case id.groupTask:
                 Intent intent3 = new Intent(this, GroupTaskActivity.class);
                 startActivity(intent3);
+                finish();
                 break;
             case id.cyclicTask:
                 Intent intent4 = new Intent(this, CyclicTaskActivity.class);
                 startActivity(intent4);
+                finish();
                 break;
             case id.archive:
                 Intent intent5 = new Intent(this, ArchiveActivity.class);
@@ -147,6 +151,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 return null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
 
