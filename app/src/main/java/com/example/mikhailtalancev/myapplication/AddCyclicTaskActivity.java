@@ -23,20 +23,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.mikhailtalancev.myapplication.R.id.setDateCyclic;
-
 public class AddCyclicTaskActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnAdd;
-    Button bntSetDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cyclic_task);
 
-        bntSetDate = (Button) findViewById(R.id.setDateCyclic);
-        bntSetDate.setOnClickListener(this);
         btnAdd = (Button) findViewById(R.id.add_cyclic_task);
         btnAdd.setOnClickListener(this);
     }
@@ -133,9 +128,6 @@ public class AddCyclicTaskActivity extends AppCompatActivity implements View.OnC
                     break;
 
                 }
-            case R.id.setDateCyclic:
-
-                break;
         }
 
     }
