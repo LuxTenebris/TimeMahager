@@ -61,39 +61,35 @@ public class FutureTaskActivity extends AppCompatActivity {
                             List<State> states = new ArrayList();
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if((Long) document.get("year") != currentYear){
-                                    if((Long) document.get("month") != currentMonth){
-                                        if((Long) document.get("day") != currentDay){
-                                            String name = (String) document.get("name");
-                                            String priority = (String) document.get("priority");
-                                            String date = (String) document.get("date");
+                                if((Long) document.get("year") != currentYear || (Long) document.get("month") != currentMonth || (Long) document.get("day") != currentDay){
+                                    String name = (String) document.get("name");
+                                    String priority = (String) document.get("priority");
+                                    String date = (String) document.get("date");
 
-                                            names.add(name);
-                                            priorities.add(priority);
-                                            dates.add(date);
-                                            descriptions.add((String) document.get("description"));
-                                            doc_id.add(document.getId());
+                                    names.add(name);
+                                    priorities.add(priority);
+                                    dates.add(date);
+                                    descriptions.add((String) document.get("description"));
+                                    doc_id.add(document.getId());
 
-                                            int color;
+                                    int color;
 
-                                            assert priority != null;
-                                            switch (priority){
-                                                case "High":
-                                                    color = Color.parseColor("#6773b7");
-                                                    break;
-                                                case "Middle":
-                                                    color = Color.parseColor("#198f66");
-                                                    break;
-                                                case "Low":
-                                                    color = Color.parseColor("#89c3f1");
-                                                    break;
-                                                default: color = 1;
-                                            }
+                                    assert priority != null;
+                                    switch (priority){
+                                        case "High":
+                                            color = Color.parseColor("#6773b7");
+                                            break;
+                                        case "Middle":
+                                            color = Color.parseColor("#198f66");
+                                            break;
+                                        case "Low":
+                                            color = Color.parseColor("#89c3f1");
+                                            break;
+                                        default: color = 1;
+
+                                    }
 
                                             states.add(new State(name, priority, date, color));
-
-                                        }
-                                    }
                                 }
 
                                 Log.d("TAG", document.getId() + " => " + document.get("name"));
