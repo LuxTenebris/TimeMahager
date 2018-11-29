@@ -83,7 +83,7 @@ public class NoteActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, DayTaskActivity.class);
 
-        if(tipe == "future") {
+        if(tipe.equals("future")) {
             intent = new Intent(this, FutureTaskActivity.class);
         }
         startActivity(intent);
@@ -111,7 +111,7 @@ public class NoteActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(NoteActivity.this, DayTaskActivity.class);
 
-                        if(tipe == "future") {
+                        if(tipe.equals("future")) {
                             intent = new Intent(NoteActivity.this, FutureTaskActivity.class);
                         }
                         startActivity(intent);
