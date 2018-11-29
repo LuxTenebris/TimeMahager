@@ -44,6 +44,7 @@ public class NoteActivity extends AppCompatActivity {
     String priority;
     String name;
     String date;
+    String tipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class NoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note);
 
         Intent intent = getIntent();
-
+        tipe = intent.getStringExtra("tipe");
         id = intent.getStringExtra("id");
         description = intent.getStringExtra("description");
         name = (String) intent.getStringExtra("name");
@@ -81,6 +82,10 @@ public class NoteActivity extends AppCompatActivity {
         Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, DayTaskActivity.class);
+
+        if(tipe == "future") {
+            intent = new Intent(this, FutureTaskActivity.class);
+        }
         startActivity(intent);
 
     }
@@ -105,6 +110,11 @@ public class NoteActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int item) {
 
                         Intent intent = new Intent(NoteActivity.this, DayTaskActivity.class);
+
+                        if(tipe == "future") {
+                            intent = new Intent(NoteActivity.this, FutureTaskActivity.class);
+                        }
+                        startActivity(intent);
 
                         switch (item) {
                             case 0:

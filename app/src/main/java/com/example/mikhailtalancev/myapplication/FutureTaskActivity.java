@@ -28,6 +28,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class FutureTaskActivity extends AppCompatActivity {
@@ -115,11 +116,14 @@ public class FutureTaskActivity extends AppCompatActivity {
                                                     Log.w("Tag", "Error adding document", e);
                                                 }
                                             });
-
+                                    doc_ref = db.collection("notes").document(document.getId());
+                                    doc_ref.delete();
 
                                 } else {
+                                    if(((Long) document.get("year")).equals(currentYear) && ((Long) document.get("month")).equals(currentMonth) && ((Long) document.get("day")).equals(currentDay)) {
 
-                                    if((Long) document.get("year") != currentYear || (Long) document.get("month") != currentMonth || (Long) document.get("day") != currentDay){
+
+                                    }  else {
                                         String name = (String) document.get("name");
                                         String priority = (String) document.get("priority");
                                         String date = (String) document.get("date");
@@ -171,6 +175,7 @@ public class FutureTaskActivity extends AppCompatActivity {
                                     intent.putExtra("description", descriptions.get((int) id));
                                     intent.putExtra("date", dates.get((int) id));
                                     intent.putExtra("priority", priorities.get((int) id));
+                                    intent.putExtra("tipe", "future");
 
                                     startActivity(intent);
                                 }

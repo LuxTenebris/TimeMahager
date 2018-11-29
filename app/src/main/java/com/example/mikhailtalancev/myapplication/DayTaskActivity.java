@@ -115,7 +115,7 @@ public class DayTaskActivity extends AppCompatActivity {
                                     intent.putExtra("description", descriptions.get((int) id));
                                     intent.putExtra("date", dates.get((int) id));
                                     intent.putExtra("priority", priorities.get((int) id));
-
+                                    intent.putExtra("tipe", "day");
                                     startActivity(intent);
                                 }
                             };
