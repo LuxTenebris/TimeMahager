@@ -30,7 +30,6 @@
         <activity android:name=".ArchiveActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".TaskActivity" />
         <activity android:name=".GroupActivity" />
         <activity android:name=".NoteActivity" />
         <activity android:name=".ArchiveGroupTaskActivity" />

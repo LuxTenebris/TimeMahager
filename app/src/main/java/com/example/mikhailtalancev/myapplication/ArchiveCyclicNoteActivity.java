@@ -64,6 +64,13 @@ public class ArchiveCyclicNoteActivity extends AppCompatActivity {
                 startActivity(intent1);
                 return true;
 
+
+            case R.id.main:
+                Intent intent2 = new Intent(this, MainActivity.class);
+                startActivity(intent2);
+                return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }

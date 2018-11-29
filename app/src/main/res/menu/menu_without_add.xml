@@ -8,8 +8,6 @@
         app:showAsAction="never">
     </item>
 
-
-
     <item
         android:id="@+id/profile"
         android:icon="@android:drawable/ic_menu_view"
@@ -17,5 +15,11 @@
         app:showAsAction="never">
     </item>
 
+    <item
+        android:id="@+id/main"
+        android:title="Main"
+        app:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_view">
+    </item>
 
 </menu>

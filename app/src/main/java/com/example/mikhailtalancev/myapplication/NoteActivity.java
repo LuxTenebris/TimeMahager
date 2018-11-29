@@ -195,6 +195,13 @@ public class NoteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+
+            case R.id.main:
+                Intent intent2 = new Intent(this, MainActivity.class);
+                startActivity(intent2);
+                return true;
+
+
             case R.id.settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
