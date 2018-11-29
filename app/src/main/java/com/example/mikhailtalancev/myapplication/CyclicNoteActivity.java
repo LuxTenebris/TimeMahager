@@ -158,7 +158,7 @@ public class CyclicNoteActivity extends AppCompatActivity {
                         }
                     }
                 });
-                builder.setCancelable(false);
+                builder.setCancelable(true);
                 return builder.create();
 
             default:

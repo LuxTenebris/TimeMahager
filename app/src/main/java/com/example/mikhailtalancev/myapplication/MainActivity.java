@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
-                builder.setCancelable(false);
+                builder.setCancelable(true);
                 return builder.create();
 
             default:
