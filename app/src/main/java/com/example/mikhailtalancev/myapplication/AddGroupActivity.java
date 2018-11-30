@@ -136,9 +136,17 @@ public class AddGroupActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(this, "You add a group", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
 
                 }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

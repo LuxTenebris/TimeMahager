@@ -125,10 +125,19 @@ public class AddCyclicTaskActivity extends AppCompatActivity implements View.OnC
                     Toast.makeText(this, "You add a cyclicTask", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
 
                 }
         }
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

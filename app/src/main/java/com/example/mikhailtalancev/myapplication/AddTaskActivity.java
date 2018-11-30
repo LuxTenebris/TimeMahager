@@ -90,6 +90,14 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         }
     };
 
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     Map<String, Object> note = new HashMap<>();
@@ -134,6 +142,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
                     Toast.makeText(this, "You add a task", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
 
                 }
