@@ -103,6 +103,8 @@ public class AddGroupActivity extends AppCompatActivity implements View.OnClickL
             case R.id.add_group:
                 EditText name = (EditText) findViewById(R.id.add_group_name);
                 EditText description = (EditText) findViewById((R.id.group_description));
+                Spinner priority = (Spinner) findViewById(R.id.group_priority);
+
                 if (name.getText().toString().trim().length() == 0) {
                     Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
                 } else {
@@ -115,6 +117,7 @@ public class AddGroupActivity extends AppCompatActivity implements View.OnClickL
                     note.put("year", myYear);
                     note.put("month", myMonth);
                     note.put("day", myDay);
+                    note.put("priority", priority.getSelectedItem().toString());
 
                     db.collection("groups")
                             .add(note)
