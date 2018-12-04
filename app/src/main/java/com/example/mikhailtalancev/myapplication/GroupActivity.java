@@ -171,7 +171,7 @@ public class GroupActivity extends AppCompatActivity {
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_without_add, menu);
+        getMenuInflater().inflate(R.menu.group_menu, menu);
         return true;
     }
 
@@ -179,6 +179,11 @@ public class GroupActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+
+            case R.id.addGroupTask:
+                Intent in = new Intent(this, AddGroupTaskActivity.class);
+                startActivity(in);
+                return true;
 
             case R.id.main:
                 Intent intent2 = new Intent(this, MainActivity.class);
