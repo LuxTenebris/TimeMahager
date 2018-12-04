@@ -41,7 +41,6 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         btnAdd.setOnClickListener(this);
     }
 
-
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_without_add, menu);
         return true;

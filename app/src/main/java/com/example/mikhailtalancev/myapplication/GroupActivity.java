@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,15 +12,23 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GroupActivity extends AppCompatActivity {
@@ -33,6 +42,12 @@ public class GroupActivity extends AppCompatActivity {
     String priority;
     String name;
     String date;
+
+    ArrayList<String> doc_id = new ArrayList<String>();
+    ArrayList<String> names = new ArrayList<String>();
+    ArrayList<String> priorities = new ArrayList<String>();
+    ArrayList<String> dates = new ArrayList<String>();
+    ArrayList<String> descriptions = new ArrayList<String>();
 
 
     @Override
@@ -61,6 +76,79 @@ public class GroupActivity extends AppCompatActivity {
         TextView note_description = (TextView) findViewById(R.id.GroupDescription);
         note_description.setText(description);
 
+        db.collection("group_" + name)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            List<State> states = new ArrayList();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+
+                                String tname = (String) document.get("name");
+                                String tpriority = (String) document.get("priority");
+                                String tdate = (String) document.get("date");
+
+                                names.add(tname);
+                                priorities.add(tpriority);
+                                dates.add(tdate);
+                                descriptions.add((String) document.get("description"));
+                                doc_id.add(document.getId());
+
+                                int color;
+
+                                assert tpriority != null;
+                                switch (tpriority) {
+                                    case "High":
+                                        color = Color.parseColor("#6773b7");
+                                        break;
+                                    case "Middle":
+                                        color = Color.parseColor("#198f66");
+                                        break;
+                                    case "Low":
+                                        color = Color.parseColor("#89c3f1");
+                                        break;
+                                    default:
+                                        color = 1;
+
+                                }
+
+                                states.add(new State(tname, tpriority, tdate, color));
+
+                                Log.d("TAG", document.getId() + " => " + document.get("name"));
+                            }
+
+                            ListView countriesList = (ListView) findViewById(R.id.lvGroupTasks);
+                            // создаем адаптер
+                            StateAdapter stateAdapter = new StateAdapter(GroupActivity.this, R.layout.day_task_item, states);
+                            // устанавливаем адаптер
+                            countriesList.setAdapter(stateAdapter);
+                            // слушатель выбора в списке
+                            AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
+                                    // получаем выбранный пункт
+                                    Intent intent = new Intent(GroupActivity.this, NoteActivity.class);
+                                    intent.putExtra("id", doc_id.get((int) id));
+                                    intent.putExtra("name", names.get((int) id));
+                                    intent.putExtra("description", descriptions.get((int) id));
+                                    intent.putExtra("date", dates.get((int) id));
+                                    intent.putExtra("priority", priorities.get((int) id));
+
+                                    startActivity(intent);
+                                }
+                            };
+
+                            countriesList.setOnItemClickListener(itemListener);
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
     }
 
@@ -68,7 +156,6 @@ public class GroupActivity extends AppCompatActivity {
     public void onclickDelete(View view) {
 
         docRef.delete();
-
         Toast.makeText(this, "Group was deleted!", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, GroupTaskActivity.class);
@@ -182,6 +269,7 @@ public class GroupActivity extends AppCompatActivity {
 
             case R.id.addGroupTask:
                 Intent in = new Intent(this, AddGroupTaskActivity.class);
+                in.putExtra("name", name);
                 startActivity(in);
                 return true;
 

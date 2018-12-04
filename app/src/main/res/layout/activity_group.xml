@@ -57,6 +57,13 @@
             android:text=""
             />
 
+        <ListView
+            android:layout_marginTop="15dp"
+            android:id="@+id/lvGroupTasks"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+
         <LinearLayout
             android:layout_marginTop="40dp"
             android:layout_width="match_parent"
@@ -83,11 +90,6 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
-
-        <ListView
-            android:id="@+id/lvGroup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
     </LinearLayout>
 
