@@ -27,6 +27,11 @@ import java.util.Map;
 public class AddGroupTaskActivity extends AppCompatActivity implements View.OnClickListener {
 
     String nameGr;
+    String descriptionGr;
+    String dateGr;
+    String idGr;
+    String priorityGr;
+
     Button btnAdd;
     int DIALOG_DATE = 1;
     int myYear = 2018;
@@ -39,10 +44,15 @@ public class AddGroupTaskActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group_task);
 
+        Intent intent = getIntent();
+
         btnAdd = (Button) findViewById(R.id.add_gr_task);
         btnAdd.setOnClickListener(this);
-        nameGr = getIntent().getStringExtra("name");
-
+        nameGr = intent.getStringExtra("name");
+        descriptionGr = intent.getStringExtra("description");
+        priorityGr = intent.getStringExtra("priority");
+        dateGr = intent.getStringExtra("date");
+        idGr = intent.getStringExtra("id");
 
     }
 
@@ -111,7 +121,16 @@ public class AddGroupTaskActivity extends AppCompatActivity implements View.OnCl
                                 }
                             });
                     Toast.makeText(this, "You add a task", Toast.LENGTH_SHORT).show();
-                    super.onBackPressed();
+                    Intent intent = new Intent(AddGroupTaskActivity.this,GroupActivity.class);
+                    intent.putExtra("name", nameGr);
+                    intent.putExtra("description",descriptionGr);
+                    intent.putExtra("date", dateGr);
+                    intent.putExtra("priority", priorityGr);
+                    intent.putExtra("id", idGr);
+
+                    startActivity(intent);
+
+                    finish();
                     break;
 
                 }

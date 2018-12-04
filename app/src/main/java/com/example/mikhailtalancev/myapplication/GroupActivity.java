@@ -37,7 +37,7 @@ public class GroupActivity extends AppCompatActivity {
 
     DocumentReference docRef;
 
-    String id;
+    String idg;
     String description;
     String priority;
     String name;
@@ -56,13 +56,13 @@ public class GroupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group);
 
         Intent intent = getIntent();
-        id = intent.getStringExtra("id");
+        idg = intent.getStringExtra("id");
         description = intent.getStringExtra("description");
         name = (String) intent.getStringExtra("name");
         priority = (String) intent.getStringExtra("priority");
         date = (String) intent.getStringExtra("date");
 
-        docRef = db.collection("groups").document(id);
+        docRef = db.collection("groups").document(idg);
 
         TextView note_name = (TextView) findViewById(R.id.GroupName);
         note_name.setText(name);
@@ -132,12 +132,18 @@ public class GroupActivity extends AppCompatActivity {
                                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
                                     // получаем выбранный пункт
-                                    Intent intent = new Intent(GroupActivity.this, NoteActivity.class);
+                                    Intent intent = new Intent(GroupActivity.this, GroupNoteActivity.class);
                                     intent.putExtra("id", doc_id.get((int) id));
                                     intent.putExtra("name", names.get((int) id));
                                     intent.putExtra("description", descriptions.get((int) id));
                                     intent.putExtra("date", dates.get((int) id));
                                     intent.putExtra("priority", priorities.get((int) id));
+                                    intent.putExtra("namegr", name);
+                                    intent.putExtra("descriptiongr", description);
+                                    intent.putExtra("dategr", date);
+                                    intent.putExtra("idgr", idg);
+                                    intent.putExtra("prioritygr", priority);
+
 
                                     startActivity(intent);
                                 }
@@ -268,9 +274,14 @@ public class GroupActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.addGroupTask:
-                Intent in = new Intent(this, AddGroupTaskActivity.class);
-                in.putExtra("name", name);
-                startActivity(in);
+                Intent intent = new Intent(this, AddGroupTaskActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("description", description);
+                intent.putExtra("date", date);
+                intent.putExtra("id", idg);
+                intent.putExtra("priority", priority);
+
+                startActivity(intent);
                 return true;
 
             case R.id.main:
@@ -280,8 +291,8 @@ public class GroupActivity extends AppCompatActivity {
 
 
             case R.id.settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(this, SettingsActivity.class);
+                startActivity(intent3);
                 return true;
 
 
@@ -293,5 +304,12 @@ public class GroupActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, GroupTaskActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

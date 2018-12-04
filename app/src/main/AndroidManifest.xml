@@ -40,7 +40,8 @@
         <activity android:name=".ArchiveNoteActivity" />
         <activity android:name=".CyclicNoteActivity" />
         <activity android:name=".ArchiveCyclicNoteActivity" />
-        <activity android:name=".AddGroupTaskActivity"></activity>
+        <activity android:name=".AddGroupTaskActivity" />
+        <activity android:name=".GroupNoteActivity"></activity>
     </application>
 
 </manifest>
