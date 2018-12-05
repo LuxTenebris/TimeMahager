@@ -79,8 +79,9 @@ public class ArchiveGroupActivity extends AppCompatActivity {
 
 
                                 String tname = (String) document.get("name");
-                                String tpriority = (String) document.get("priority");
+                                String tsuccess = (String) document.get("success");
                                 String tdate = (String) document.get("date");
+                                String tpriority = (String) document.get("priority");
 
                                 names.add(tname);
                                 priorities.add(tpriority);
@@ -90,15 +91,15 @@ public class ArchiveGroupActivity extends AppCompatActivity {
 
                                 int color;
 
-                                assert tpriority != null;
-                                switch (tpriority) {
-                                    case "High":
-                                        color = Color.parseColor("#6773b7");
+                                assert tsuccess != null;
+                                switch (tsuccess) {
+                                    case "False":
+                                        color = Color.parseColor("#ce2c2c");
                                         break;
-                                    case "Middle":
-                                        color = Color.parseColor("#198f66");
+                                    case "True":
+                                        color = Color.parseColor("#dd39ef19");
                                         break;
-                                    case "Low":
+                                    case "Skip":
                                         color = Color.parseColor("#89c3f1");
                                         break;
                                     default:
