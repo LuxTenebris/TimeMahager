@@ -222,7 +222,7 @@ public class GroupActivity extends AppCompatActivity {
                 final String[] mAddName = {"Yes", "No"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Was task successful?"); // заголовок для диалога
+                builder.setTitle("Was group successful?"); // заголовок для диалога
 
                 builder.setItems(mAddName, new DialogInterface.OnClickListener() {
                     @Override
@@ -256,6 +256,23 @@ public class GroupActivity extends AppCompatActivity {
                                             }
                                         });
                                 docRef.delete();
+                                db.collection("group_" + name)
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                                        document.getReference().delete();
+
+                                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                                    }
+                                                } else {
+                                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                                }
+                                            }
+                                        });
 
                                 startActivity(intent);
                                 finish();
@@ -283,6 +300,23 @@ public class GroupActivity extends AppCompatActivity {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 Log.w("Tag", "Error adding document", e);
+                                            }
+                                        });
+                                db.collection("group_" + name)
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                                        document.getReference().delete();
+
+                                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                                    }
+                                                } else {
+                                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                                }
                                             }
                                         });
                                 docRef.delete();
