@@ -42,6 +42,7 @@ public class GroupActivity extends AppCompatActivity {
     String priority;
     String name;
     String date;
+    String TAG = "Tag";
 
     ArrayList<String> doc_id = new ArrayList<String>();
     ArrayList<String> names = new ArrayList<String>();
@@ -166,6 +167,43 @@ public class GroupActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, GroupTaskActivity.class);
 
+        db.collection("group_" + name)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                document.getReference().delete();
+
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+        db.collection("archive_group_note" + name)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                document.getReference().delete();
+
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
         startActivity(intent);
         finish();
 
@@ -218,6 +256,7 @@ public class GroupActivity extends AppCompatActivity {
                                             }
                                         });
                                 docRef.delete();
+
                                 startActivity(intent);
                                 finish();
                                 break;
