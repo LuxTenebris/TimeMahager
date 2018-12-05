@@ -7,6 +7,7 @@
     tools:context="com.example.mikhailtalancev.myapplication.AddTaskActivity">
 
     <LinearLayout
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="@color/colorWhite"
@@ -18,7 +19,7 @@
             android:background="@drawable/edit_text_style"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="30dp">
         <EditText
             android:singleLine="true"
             android:layout_marginRight="5dp"
@@ -52,29 +53,39 @@
                 android:layout_height="wrap_content" />
 
         </android.support.design.widget.TextInputLayout>
-        <Spinner
-            android:id="@+id/task_priority"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/edit_text_style"
-            android:entries="@array/importantlist"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"></Spinner>
+        <LinearLayout
 
-        <Button
-            android:layout_marginTop="20dp"
-            android:id="@+id/setDate"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
-            android:background="@drawable/edit_text_style"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:onClick="onclick"
-            android:text="SetDate"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+
+            <Spinner
+                android:id="@+id/task_priority"
+
+                android:layout_marginRight="5dp"
+                android:background="@drawable/edit_text_style"
+                android:entries="@array/importantlist"
+                android:layout_marginTop="0dp"
+                android:layout_width="70dp"
+                android:layout_height="25dp" />
+
+            <Button
+                android:id="@+id/setDate"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/edit_text_style"
+                android:onClick="onclick"
+                android:text="Date"
+                android:textSize="12sp" />
+        </LinearLayout>
 
         <Button
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/add_task"
             android:textSize="10sp"
             android:layout_gravity="center_horizontal"
