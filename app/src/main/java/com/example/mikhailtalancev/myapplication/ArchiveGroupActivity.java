@@ -99,9 +99,6 @@ public class ArchiveGroupActivity extends AppCompatActivity {
                                     case "True":
                                         color = Color.parseColor("#dd39ef19");
                                         break;
-                                    case "Skip":
-                                        color = Color.parseColor("#89c3f1");
-                                        break;
                                     default:
                                         color = 1;
 
@@ -130,11 +127,6 @@ public class ArchiveGroupActivity extends AppCompatActivity {
                                     intent.putExtra("date", dates.get((int) id));
                                     intent.putExtra("priority", priorities.get((int) id));
                                     intent.putExtra("namegr", name);
-                                    intent.putExtra("descriptiongr", description);
-                                    intent.putExtra("dategr", date);
-                                    intent.putExtra("idgr", idg);
-                                    intent.putExtra("prioritygr", priority);
-
 
                                     startActivity(intent);
                                 }

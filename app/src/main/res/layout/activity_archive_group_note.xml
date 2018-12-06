@@ -6,4 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".ArchiveGroupNoteActivity">
 
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="@drawable/edit_text_style"
+            android:id="@+id/ArchiveGrNote"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/ArchiveGrNoteName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_gravity="top|left"
+                android:textSize="24sp">
+            </TextView>
+            <TextView
+                android:id="@+id/ArchiveGrNoteDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="5dp">
+            </TextView>
+            <TextView
+                android:id="@+id/ArchiveGrNotePriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginRight="5dp">
+            </TextView>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/archivegrdescription"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text=""
+            />
+
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>
