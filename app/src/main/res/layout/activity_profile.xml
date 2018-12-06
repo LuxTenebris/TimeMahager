@@ -5,5 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mikhailtalancev.myapplication.ProfileActivity">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.TextInputLayout
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp">
+            <EditText
+                android:singleLine="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:hint="Your Name"
+                android:layout_marginTop="0dp"
+                android:id="@+id/add_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
 
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilTitleGroup"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/edit_text_style"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/add_bio"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:hint="Bio"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/profile_save"
+            android:text="Save"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="150dp"
+            android:layout_width="10dp"
+            android:layout_height="30dp"
+            android:textSize="10sp"
+            android:background="@drawable/edit_text_style"
+            />
+
+    </TableLayout>
 </android.support.constraint.ConstraintLayout>

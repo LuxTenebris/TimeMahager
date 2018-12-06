@@ -33,13 +33,13 @@
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/user_name"/>
+                android:text=""/>
             <TextView
-                android:id="@+id/level"
+                android:id="@+id/bio"
                 android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/level"/>
+                android:text=""/>
         </TableLayout>
 
     </LinearLayout>

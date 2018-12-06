@@ -1,25 +1,47 @@
 package com.example.mikhailtalancev.myapplication;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.mikhailtalancev.myapplication.R.id;
 import static com.example.mikhailtalancev.myapplication.R.layout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private final int IDD_LIST_ADD = 1;
 
-    Button btnDay ;
+    Button btnDay;
     Button btnFuture;
     Button btnGroup;
     Button btnCyclic;
@@ -29,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
+
+        final TextView name = findViewById(id.user_name);
+        final TextView bio = findViewById(id.bio);
+
         btnDay = (Button) findViewById(id.dayTask);
         btnDay.setOnClickListener(this);
         btnFuture = (Button) findViewById(id.futureTasks);
@@ -40,6 +66,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnGroup = (Button) findViewById(id.groupTask);
         btnGroup.setOnClickListener(this);
 
+        db.collection("profile")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            name.setText("YourName");
+                            bio.setText("Bio");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                name.setText((String) document.get("user_name"));
+                                bio.setText((String) document.get("bio"));
+
+                                Log.d("TAG", document.getId() + " => " + document.get("name"));
+                            }
+
+                        } else {
+                            name.setText("YourName");
+                            bio.setText("Bio");
+                            Log.d("TAG", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
