@@ -62,37 +62,17 @@ public class NoteActivity extends AppCompatActivity {
         docRef = db.collection("notes").document(id);
 
         TextView note_name = (TextView) findViewById(R.id.NoteName);
-        note_name.setText(name);
+        note_name.setText("Name: " + name);
 
         TextView note_priority = (TextView) findViewById(R.id.NotePriority);
-        note_priority.setText(priority);
+        note_priority.setText("Priority: " + priority);
 
         TextView note_date = (TextView) findViewById(R.id.NoteDate);
-        note_date.setText(date);
+        note_date.setText("Date: " + date);
 
         TextView note_description = (TextView) findViewById(R.id.description);
-        note_description.setText(description);
+        note_description.setText("Description: "+ description);
 
-    }
-
-    public void onclickDelete(View view) {
-
-        docRef.delete();
-
-        Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this, DayTaskActivity.class);
-
-        if(tipe.equals("future")) {
-            intent = new Intent(this, FutureTaskActivity.class);
-        }
-        startActivity(intent);
-        finish();
-
-    }
-
-    public void onclickCansel(View view){
-        showDialog(1);
     }
 
     @Override
@@ -189,7 +169,7 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_without_add, menu);
+        getMenuInflater().inflate(R.menu.menu_page, menu);
         return true;
     }
 
@@ -198,6 +178,29 @@ public class NoteActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
 
+            case R.id.CanselThis:
+
+                showDialog(1);
+
+                return  true;
+
+
+            case R.id.DeleteThis:
+
+                docRef.delete();
+
+                Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(this, DayTaskActivity.class);
+
+                if(tipe.equals("future")) {
+                    intent = new Intent(this, FutureTaskActivity.class);
+                }
+                startActivity(intent);
+                finish();
+
+                return true;
+
             case R.id.main:
                 Intent intent2 = new Intent(this, MainActivity.class);
                 startActivity(intent2);
@@ -205,8 +208,8 @@ public class NoteActivity extends AppCompatActivity {
 
 
             case R.id.settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                Intent intent6 = new Intent(this, SettingsActivity.class);
+                startActivity(intent6);
                 return true;
 
 
