@@ -7,6 +7,7 @@
     tools:context=".AddGroupActivity">
 
     <LinearLayout
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:background="@color/colorWhite"
@@ -15,15 +16,14 @@
         <android.support.design.widget.TextInputLayout
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/edit_text_style"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="10dp">
             <EditText
                 android:singleLine="true"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
-                android:hint="GroupName"
+                android:hint="Group name"
                 android:layout_marginTop="0dp"
                 android:id="@+id/add_group_name"
                 android:layout_width="match_parent"
@@ -34,11 +34,11 @@
 
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilTitleGroup"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/edit_text_style"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <EditText
@@ -48,51 +48,49 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:hint="Description of your group"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                />
 
         </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
+        <Spinner
+            android:id="@+id/group_priority"
 
+            android:layout_marginRight="5dp"
+            android:entries="@array/importantlist"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp">
-
-            <Spinner
-                android:id="@+id/group_priority"
-
-                android:layout_marginRight="5dp"
-                android:background="@drawable/edit_text_style"
-                android:entries="@array/importantlist"
-                android:layout_marginTop="0dp"
-                android:layout_width="70dp"
-                android:layout_height="25dp" />
-
-            <Button
-                android:id="@+id/setDateGroup"
-                android:layout_width="70dp"
-                android:layout_height="25dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_style"
-                android:onClick="onclick"
-                android:text="Date"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <Button
             android:layout_marginTop="40dp"
-            android:id="@+id/add_group"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:textSize="10sp"
-            android:background="@drawable/edit_text_style"
-            android:layout_height="wrap_content"
-            android:text="AddGroup"/>
-    </LinearLayout>
+            android:onClick="onclick"
+            android:id="@+id/GroupDateSet"
+            android:text="Choose date of your group"
+            android:textSize="18sp"
+            />
 
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

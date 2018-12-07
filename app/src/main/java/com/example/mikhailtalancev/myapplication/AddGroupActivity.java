@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,23 +25,26 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddGroupActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddGroupActivity extends AppCompatActivity {
 
-    Button btnAdd;
+
     int DIALOG_DATE = 1;
     int myYear = 2018;
     int myMonth = 12;
     int myDay = 14;
-
+    TextView datev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group);
-        btnAdd = (Button) findViewById(R.id.add_group);
-        btnAdd.setOnClickListener(this);
+       datev = findViewById(R.id.GroupDateSet);
 
     }
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    Map<String, Object> note = new HashMap<>();
 
 
     public void onclick(View view) {
@@ -63,12 +67,13 @@ public class AddGroupActivity extends AppCompatActivity implements View.OnClickL
             myYear = year;
             myMonth = monthOfYear + 1;
             myDay = dayOfMonth;
+            datev.setText(String.valueOf(myYear) + "//" + String.valueOf(myMonth) + "//" + String.valueOf(myDay));
         }
     };
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_without_add, menu);
+        getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
 
@@ -76,6 +81,52 @@ public class AddGroupActivity extends AppCompatActivity implements View.OnClickL
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.addNote:
+                EditText name = (EditText) findViewById(R.id.add_group_name);
+                EditText description = (EditText) findViewById((R.id.group_description));
+                Spinner priority = (Spinner) findViewById(R.id.group_priority);
+
+                if (name.getText().toString().trim().length() == 0) {
+                    Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
+                } else {
+                    if(datev.getText().toString().equals("Choose date of your group")){
+                        Toast.makeText(this, "You did not enter a date", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        String date = String.valueOf(myYear) + "//" + String.valueOf(myMonth) + "//" + String.valueOf(myDay);
+
+                        note.put("date",date);
+                        note.put("name", name.getText().toString());
+                        note.put("description", description.getText().toString());
+                        note.put("year", myYear);
+                        note.put("month", myMonth);
+                        note.put("day", myDay);
+                        note.put("priority", priority.getSelectedItem().toString());
+
+                        db.collection("groups")
+                                .add(note)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("Tag", "Error adding document", e);
+                                    }
+                                });
+                        Toast.makeText(this, "You add a group", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        }
+                }
+
+                return  true;
+
             case R.id.settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
@@ -92,56 +143,6 @@ public class AddGroupActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    Map<String, Object> note = new HashMap<>();
-
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.add_group:
-                EditText name = (EditText) findViewById(R.id.add_group_name);
-                EditText description = (EditText) findViewById((R.id.group_description));
-                Spinner priority = (Spinner) findViewById(R.id.group_priority);
-
-                if (name.getText().toString().trim().length() == 0) {
-                    Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    String date = String.valueOf(myYear) + "//" + String.valueOf(myMonth) + "//" + String.valueOf(myDay);
-
-                    note.put("date",date);
-                    note.put("name", name.getText().toString());
-                    note.put("description", description.getText().toString());
-                    note.put("year", myYear);
-                    note.put("month", myMonth);
-                    note.put("day", myDay);
-                    note.put("priority", priority.getSelectedItem().toString());
-
-                    db.collection("groups")
-                            .add(note)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w("Tag", "Error adding document", e);
-                                }
-                            });
-                    Toast.makeText(this, "You add a group", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    break;
-
-                }
-        }
-    }
 
     @Override
     public void onBackPressed() {
