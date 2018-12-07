@@ -39,16 +39,16 @@ public class ArchiveGroupNoteActivity extends AppCompatActivity {
         date = (String) intent.getStringExtra("date");
 
         TextView note_name = (TextView) findViewById(R.id.ArchiveGrNoteName);
-        note_name.setText(name);
+        note_name.setText("Name: " + name);
 
         TextView note_priority = (TextView) findViewById(R.id.ArchiveGrNotePriority);
-        note_priority.setText(priority);
+        note_priority.setText("Priority: " + priority);
 
         TextView note_date = (TextView) findViewById(R.id.ArchiveGrNoteDate);
-        note_date.setText(date);
+        note_date.setText("Date: " + date);
 
         TextView note_description = (TextView) findViewById(R.id.archivegrdescription);
-        note_description.setText(description);
+        note_description.setText("Description: " + description);
 
     }
 
