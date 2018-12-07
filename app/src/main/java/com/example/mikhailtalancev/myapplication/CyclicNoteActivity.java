@@ -51,34 +51,20 @@ public class CyclicNoteActivity extends AppCompatActivity {
         docRef = db.collection("cyclicTasks").document(id);
 
         TextView note_name = (TextView) findViewById(R.id.CyclicNoteName);
-        note_name.setText(name);
+        note_name.setText("Name: " + name);
 
         TextView note_end_time = (TextView) findViewById(R.id.CyclicNoteEnd);
-        note_end_time.setText(timeEnd);
+        note_end_time.setText("End: " + timeEnd);
 
         TextView note_start_time = (TextView) findViewById(R.id.CyclicNoteStart);
-        note_start_time.setText(timeStart);
+        note_start_time.setText("Start: " + timeStart);
 
         TextView note_description = (TextView) findViewById(R.id.CyclicNoteDescription);
-        note_description.setText(description);
+        note_description.setText("Description: " + description);
 
     }
 
-    public void onclickDelete(View view) {
 
-        docRef.delete();
-
-        Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this, CyclicTaskActivity.class);
-        startActivity(intent);
-        finish();
-
-    }
-
-    public void onclickCansel(View view){
-        showDialog(1);
-    }
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -172,7 +158,7 @@ public class CyclicNoteActivity extends AppCompatActivity {
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_without_add, menu);
+        getMenuInflater().inflate(R.menu.menu_page, menu);
         return true;
     }
 
@@ -181,6 +167,23 @@ public class CyclicNoteActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
 
+            case R.id.CanselThis:
+
+                showDialog(1);
+
+                return true;
+
+            case R.id.DeleteThis:
+
+                docRef.delete();
+
+                Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(this, CyclicTaskActivity.class);
+                startActivity(intent);
+                finish();
+
+                return true;
 
             case R.id.main:
                 Intent intent2 = new Intent(this, MainActivity.class);
@@ -189,8 +192,8 @@ public class CyclicNoteActivity extends AppCompatActivity {
 
 
             case R.id.settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                Intent intent8 = new Intent(this, SettingsActivity.class);
+                startActivity(intent8);
                 return true;
 
 
