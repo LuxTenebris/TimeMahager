@@ -25,7 +25,7 @@
 
     <item
         android:id="@+id/CanselThisGr"
-        android:icon="@android:drawable/ic_dialog_info"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="Add"
         app:showAsAction="always">
     </item>
@@ -33,7 +33,7 @@
 
     <item
         android:id="@+id/DeleteThisGr"
-        android:icon="@android:drawable/ic_delete"
+        android:icon="@android:drawable/ic_menu_delete"
         android:title="Add"
         app:showAsAction="always">
     </item>
