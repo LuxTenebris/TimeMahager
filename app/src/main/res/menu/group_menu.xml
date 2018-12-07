@@ -24,6 +24,21 @@
     </item>
 
     <item
+        android:id="@+id/CanselThisGr"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="Add"
+        app:showAsAction="always">
+    </item>
+
+
+    <item
+        android:id="@+id/DeleteThisGr"
+        android:icon="@android:drawable/ic_delete"
+        android:title="Add"
+        app:showAsAction="always">
+    </item>
+
+    <item
         android:id="@+id/main"
         android:title="Main"
         app:showAsAction="never"

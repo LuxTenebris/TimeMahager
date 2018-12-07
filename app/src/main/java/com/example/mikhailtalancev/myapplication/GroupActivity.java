@@ -66,16 +66,16 @@ public class GroupActivity extends AppCompatActivity {
         docRef = db.collection("groups").document(idg);
 
         TextView note_name = (TextView) findViewById(R.id.GroupName);
-        note_name.setText(name);
+        note_name.setText("Name: "+name);
 
         TextView note_priority = (TextView) findViewById(R.id.GroupPriority);
-        note_priority.setText(priority);
+        note_priority.setText("Priority: "+priority);
 
         TextView note_date = (TextView) findViewById(R.id.GroupDate);
-        note_date.setText(date);
+        note_date.setText("Date: "+date);
 
         TextView note_description = (TextView) findViewById(R.id.GroupDescription);
-        note_description.setText(description);
+        note_description.setText("Description: "+description);
 
         db.collection("group_" + name)
                 .get()
@@ -160,58 +160,7 @@ public class GroupActivity extends AppCompatActivity {
     }
 
 
-    public void onclickDelete(View view) {
 
-        docRef.delete();
-        Toast.makeText(this, "Group was deleted!", Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this, GroupTaskActivity.class);
-
-        db.collection("group_" + name)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                document.getReference().delete();
-
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-
-
-        db.collection("archive_group_note" + name)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                document.getReference().delete();
-
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-
-        startActivity(intent);
-        finish();
-
-    }
-
-    public void onclickCansel(View view){
-        showDialog(1);
-    }
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -346,6 +295,60 @@ public class GroupActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
 
+            case R.id.DeleteThisGr:
+
+                docRef.delete();
+                Toast.makeText(this, "Group was deleted!", Toast.LENGTH_SHORT).show();
+
+                Intent intent2 = new Intent(this, GroupTaskActivity.class);
+
+                db.collection("group_" + name)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                        document.getReference().delete();
+
+                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                    }
+                                } else {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+
+
+                db.collection("archive_group_note" + name)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                        document.getReference().delete();
+
+                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                    }
+                                } else {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+
+                startActivity(intent2);
+                finish();
+
+
+            case R.id.CanselThisGr:
+
+                showDialog(1);
+
+                return  true;
+
             case R.id.addGroupTask:
                 Intent intent = new Intent(this, AddGroupTaskActivity.class);
                 intent.putExtra("name", name);
@@ -358,8 +361,8 @@ public class GroupActivity extends AppCompatActivity {
                 return true;
 
             case R.id.main:
-                Intent intent2 = new Intent(this, MainActivity.class);
-                startActivity(intent2);
+                Intent intent4 = new Intent(this, MainActivity.class);
+                startActivity(intent4);
                 return true;
 
 

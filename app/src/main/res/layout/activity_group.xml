@@ -11,87 +11,99 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <FrameLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:background="@drawable/edit_text_style"
-            android:id="@+id/Note"
-            android:layout_marginLeft="10dp"
-            android:layout_width="match_parent"
+
+        <TextView
             android:layout_marginRight="10dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:id="@+id/GroupName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:layout_gravity="top|left"
-                android:textSize="24sp">
-            </TextView>
-            <TextView
-                android:id="@+id/GroupDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:layout_gravity="bottom|left"
-                android:layout_marginLeft="5dp">
-            </TextView>
-            <TextView
-                android:id="@+id/GroupPriority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginRight="5dp">
-            </TextView>
-        </FrameLayout>
+            android:layout_marginLeft="10dp"
+            android:id="@+id/GroupName"
+            android:text="Name: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+        <TextView
+
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/GroupDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: "
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            />
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/GroupPriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Priority: "
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
 
         <TextView
             android:id="@+id/GroupDescription"
-            android:background="@drawable/edit_text_style"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text=""
+            android:layout_height="wrap_content"
+            android:text="Description: "
+            android:textSize="20sp"
             />
 
-        <ListView
-            android:layout_marginTop="15dp"
-            android:id="@+id/lvGroupTasks"
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
-
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
 
         <LinearLayout
-            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/deleteGroup"
-                android:onClick="onclickDelete"
-                android:background="@drawable/edit_text_style"
-                android:layout_marginLeft="90dp"
-                android:textSize="12sp"
-                android:layout_width="90dp"
-                android:text="Delete"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"/>
-            <Button
+            android:layout_height="match_parent">
+            <ListView
+                android:layout_marginTop="15dp"
+                android:id="@+id/lvGroupTasks"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/edit_text_style"
-                android:textSize="12sp"
-                android:onClick="onclickCansel"
-                android:text="CanselGroup"
-                android:layout_width="90dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"/>
         </LinearLayout>
 
+
     </LinearLayout>
+
+
+
+
+
 
 
 </android.support.constraint.ConstraintLayout>
