@@ -16,10 +16,9 @@
         <android.support.design.widget.TextInputLayout
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/edit_text_style"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="10dp">
         <EditText
             android:singleLine="true"
             android:layout_marginRight="5dp"
@@ -38,9 +37,8 @@
             android:id="@+id/tilTitleGroup"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/edit_text_style"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <EditText
@@ -50,49 +48,49 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:hint="Description of your task"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+              />
 
         </android.support.design.widget.TextInputLayout>
-        <LinearLayout
 
+        <Spinner
+            android:id="@+id/task_priority"
+
+            android:layout_marginRight="5dp"
+            android:entries="@array/importantlist"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+        <TextView
+
+            android:id="@+id/SoloSetDate"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="40dp"
+            android:onClick="onclick"
+            android:text="Choose date of your task"
+            android:textSize="18sp"
+             />
 
-            <Spinner
-                android:id="@+id/task_priority"
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
 
-                android:layout_marginRight="5dp"
-                android:background="@drawable/edit_text_style"
-                android:entries="@array/importantlist"
-                android:layout_marginTop="0dp"
-                android:layout_width="70dp"
-                android:layout_height="25dp" />
 
-            <Button
-                android:id="@+id/setDate"
-                android:layout_width="70dp"
-                android:layout_height="25dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edit_text_style"
-                android:onClick="onclick"
-                android:text="Date"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <Button
-            android:layout_marginTop="20dp"
-            android:id="@+id/add_task"
-            android:textSize="10sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:background="@drawable/edit_text_style"
-            android:layout_height="wrap_content"
-            android:text="AddTask"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
