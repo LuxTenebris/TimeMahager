@@ -58,40 +58,17 @@ public class GroupNoteActivity extends AppCompatActivity {
         docRef = db.collection("group_" + namegr).document(id);
 
         TextView note_name = (TextView) findViewById(R.id.GrNoteName);
-        note_name.setText(name);
+        note_name.setText("Name: " + name);
 
         TextView note_priority = (TextView) findViewById(R.id.GrNotePriority);
-        note_priority.setText(priority);
+        note_priority.setText("Priority: " + priority);
 
         TextView note_date = (TextView) findViewById(R.id.GrNoteDate);
-        note_date.setText(date);
+        note_date.setText("Date: " + date);
 
         TextView note_description = (TextView) findViewById(R.id.grdescription);
-        note_description.setText(description);
+        note_description.setText("Description: " + description);
 
-    }
-
-    public void onclickDelete(View view) {
-
-        docRef.delete();
-
-        Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
-
-
-        Intent intent = new Intent(GroupNoteActivity.this, GroupActivity.class);
-        intent.putExtra("name", namegr);
-        intent.putExtra("description",descriptiongr);
-        intent.putExtra("date", dategr);
-        intent.putExtra("priority", prioritygr);
-        intent.putExtra("id", idgr);
-
-        startActivity(intent);
-        finish();
-
-    }
-
-    public void onclickCansel(View view){
-        showDialog(1);
     }
 
     @Override
@@ -200,7 +177,7 @@ public class GroupNoteActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_without_add, menu);
+        getMenuInflater().inflate(R.menu.menu_page, menu);
         return true;
     }
 
@@ -208,6 +185,27 @@ public class GroupNoteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.CanselThis:
+                showDialog(1);
+                return true;
+
+            case R.id.DeleteThis:
+                docRef.delete();
+
+                Toast.makeText(this, "Task was deleted!", Toast.LENGTH_SHORT).show();
+
+
+                Intent intent = new Intent(GroupNoteActivity.this, GroupActivity.class);
+                intent.putExtra("name", namegr);
+                intent.putExtra("description",descriptiongr);
+                intent.putExtra("date", dategr);
+                intent.putExtra("priority", prioritygr);
+                intent.putExtra("id", idgr);
+
+                startActivity(intent);
+                finish();
+
+                return true;
 
             case R.id.main:
                 Intent intent2 = new Intent(this, MainActivity.class);
@@ -216,8 +214,8 @@ public class GroupNoteActivity extends AppCompatActivity {
 
 
             case R.id.settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                Intent intent11 = new Intent(this, SettingsActivity.class);
+                startActivity(intent11);
                 return true;
 
 
