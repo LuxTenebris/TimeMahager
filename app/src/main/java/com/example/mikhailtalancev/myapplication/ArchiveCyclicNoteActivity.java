@@ -30,16 +30,19 @@ public class ArchiveCyclicNoteActivity extends AppCompatActivity {
         timeStart = (String) intent.getStringExtra("timeEnd");
 
         TextView note_name = (TextView) findViewById(R.id.CyclicArchiveNoteName);
-        note_name.setText(name);
+        note_name.setText("Name: " + name);
 
         TextView note_priority = (TextView) findViewById(R.id.CyclicArchiveNoteEnd);
-        note_priority.setText(timeEnd);
+        note_priority.setText("End: " + timeEnd);
 
         TextView note_date = (TextView) findViewById(R.id.CyclicArchiveNoteStart);
-        note_date.setText(timeStart);
+        note_date.setText("Start: " + timeStart);
 
-        TextView note_description = (TextView) findViewById(R.id.CyclicArchiveDescription);
-        note_description.setText(description);
+        TextView note_description = (TextView) findViewById(R.id.CyclicArchiveNoteDescription);
+        note_description.setText("Description: " + description);
+
+        TextView note_success = findViewById(R.id.CyclicArchiveNoteSuccess);
+        note_success.setText("Success: " + success);
 
     }
 

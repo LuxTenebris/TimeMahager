@@ -81,10 +81,10 @@ public class ArchiveCyclicTaskActivity extends AppCompatActivity {
 
                                 assert success != null;
                                 switch (success){
-                                    case "True":
+                                    case "False":
                                         color = Color.parseColor("#ce2c2c");
                                         break;
-                                    case "False":
+                                    case "True":
                                         color = Color.parseColor("#dd39ef19");
                                         break;
                                     default: color = 1;
