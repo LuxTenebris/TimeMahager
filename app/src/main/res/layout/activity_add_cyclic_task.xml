@@ -15,10 +15,9 @@
         <android.support.design.widget.TextInputLayout
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/edit_text_style"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="10dp">
             <EditText
                 android:singleLine="true"
                 android:layout_marginRight="5dp"
@@ -34,11 +33,11 @@
 
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilTitleGroup"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
-            android:background="@drawable/edit_text_style"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
 
             <EditText
@@ -48,49 +47,52 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:hint="Description of your task"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                />
 
         </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <Button
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/setTimeCyclicStart"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:background="@drawable/edit_text_style"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="SetTimeStart"
-                android:onClick="onclick"/>
-            <Button
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/setTimeCyclicEnd"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="wrap_content"
-                android:background="@drawable/edit_text_style"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:text="SetTimeEnd"
-                android:onClick="onclick1"/>
-
-        </LinearLayout>
-
-        <Button
-            android:layout_marginTop="20dp"
-            android:id="@+id/add_cyclic_task"
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/setTimeCyclicStart"
             android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:textSize="10sp"
-            android:background="@drawable/edit_text_style"
-            android:layout_height="wrap_content"
-            android:text="AddTask"/>
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:textSize="18sp"
+            android:text="Start time of you task"
+            android:onClick="onclick"/>
+
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+
+        <TextView
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/setTimeCyclicEnd"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:textSize="18sp"
+            android:text="End time of your task"
+            android:onClick="onclick1"/>
+
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+
     </LinearLayout>
 
 
