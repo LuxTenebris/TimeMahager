@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,7 +25,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddGroupTaskActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddGroupTaskActivity extends AppCompatActivity{
+
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    Map<String, Object> note = new HashMap<>();
+
+    TextView datev;
 
     String nameGr;
     String descriptionGr;
@@ -32,7 +40,6 @@ public class AddGroupTaskActivity extends AppCompatActivity implements View.OnCl
     String idGr;
     String priorityGr;
 
-    Button btnAdd;
     int DIALOG_DATE = 1;
     int myYear = 2018;
     int myMonth = 12;
@@ -43,11 +50,9 @@ public class AddGroupTaskActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group_task);
-
+        datev = findViewById(R.id.GroupNoteSetDate);
         Intent intent = getIntent();
 
-        btnAdd = (Button) findViewById(R.id.add_gr_task);
-        btnAdd.setOnClickListener(this);
         nameGr = intent.getStringExtra("name");
         descriptionGr = intent.getStringExtra("description");
         priorityGr = intent.getStringExtra("priority");
@@ -77,69 +82,16 @@ public class AddGroupTaskActivity extends AppCompatActivity implements View.OnCl
             myYear = year;
             myMonth = monthOfYear + 1;
             myDay = dayOfMonth;
+            datev.setText(String.valueOf(myYear) + "//" + String.valueOf(myMonth) + "//" + String.valueOf(myDay));
         }
     };
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    Map<String, Object> note = new HashMap<>();
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.add_gr_task:
-                EditText name = (EditText) findViewById(R.id.add_gr_task_name);
-                EditText description = (EditText) findViewById((R.id.gr_task_description));
-                Spinner priority = (Spinner) findViewById(R.id.gr_task_priority);
-                if (name.getText().toString().trim().length() == 0) {
-                    Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    String date = String.valueOf(myYear) + "//" + String.valueOf(myMonth) + "//" + String.valueOf(myDay);
 
 
-                    note.put("name", name.getText().toString());
-                    note.put("description", description.getText().toString());
-                    note.put("priority", priority.getSelectedItem().toString());
-                    note.put("date", date);
-                    note.put("year", myYear);
-                    note.put("month", myMonth);
-                    note.put("day", myDay);
-
-                    db.collection("group_" + nameGr)
-                            .add(note)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w("Tag", "Error adding document", e);
-                                }
-                            });
-                    Toast.makeText(this, "You add a task", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AddGroupTaskActivity.this,GroupActivity.class);
-                    intent.putExtra("name", nameGr);
-                    intent.putExtra("description",descriptionGr);
-                    intent.putExtra("date", dateGr);
-                    intent.putExtra("priority", priorityGr);
-                    intent.putExtra("id", idGr);
-
-                    startActivity(intent);
-
-                    finish();
-                    break;
-
-                }
-        }
-    }
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_without_add, menu);
+        getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
 
@@ -147,6 +99,60 @@ public class AddGroupTaskActivity extends AppCompatActivity implements View.OnCl
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.addNote:
+
+
+                EditText name = (EditText) findViewById(R.id.add_gr_task_name);
+                EditText description = (EditText) findViewById((R.id.gr_task_description));
+                Spinner priority = (Spinner) findViewById(R.id.gr_task_priority);
+                if (name.getText().toString().trim().length() == 0) {
+                    Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
+                } else {
+                    if(datev.getText().toString().equals("Choose date of your task")){
+                        Toast.makeText(this, "You did not enter a date", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        String date = String.valueOf(myYear) + "//" + String.valueOf(myMonth) + "//" + String.valueOf(myDay);
+
+
+                        note.put("name", name.getText().toString());
+                        note.put("description", description.getText().toString());
+                        note.put("priority", priority.getSelectedItem().toString());
+                        note.put("date", date);
+                        note.put("year", myYear);
+                        note.put("month", myMonth);
+                        note.put("day", myDay);
+
+                        db.collection("group_" + nameGr)
+                                .add(note)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Log.d("Tag", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("Tag", "Error adding document", e);
+                                    }
+                                });
+                        Toast.makeText(this, "You add a task", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AddGroupTaskActivity.this, GroupActivity.class);
+                        intent.putExtra("name", nameGr);
+                        intent.putExtra("description", descriptionGr);
+                        intent.putExtra("date", dateGr);
+                        intent.putExtra("priority", priorityGr);
+                        intent.putExtra("id", idGr);
+
+                        startActivity(intent);
+
+                        finish();
+                    }
+                }
+
+                return true;
 
             case R.id.main:
                 Intent intent2 = new Intent(this, MainActivity.class);
