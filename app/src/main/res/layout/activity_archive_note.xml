@@ -10,51 +10,95 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <FrameLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:background="@drawable/edit_text_style"
-            android:id="@+id/ArchiveNote"
-            android:layout_marginLeft="10dp"
-            android:layout_width="match_parent"
+
+        <TextView
             android:layout_marginRight="10dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:id="@+id/ArchiveNoteName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:layout_gravity="top|left"
-                android:textSize="24sp">
-            </TextView>
-            <TextView
-                android:id="@+id/ArchiveNoteDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:layout_gravity="bottom|left"
-                android:layout_marginLeft="5dp">
-            </TextView>
-            <TextView
-                android:id="@+id/ArchiveNotePriority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginRight="5dp">
-            </TextView>
-        </FrameLayout>
+            android:layout_marginLeft="10dp"
+            android:id="@+id/ArchiveNoteName"
+            android:text="Name: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+        <TextView
+
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/ArchiveNoteDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: "
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            />
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/ArchiveNotePriority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Priority: "
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
+
+        <TextView
+        android:textSize="20sp"
+        android:id="@+id/ArchiveNoteSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Success: "
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
 
         <TextView
             android:id="@+id/ArchiveDescription"
-            android:background="@drawable/edit_text_style"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text=""
+            android:layout_height="wrap_content"
+            android:text="Description: "
+            android:textSize="20sp"
             />
+
+        <View
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#000000"/>
 
     </LinearLayout>
 
