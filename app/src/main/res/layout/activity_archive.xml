@@ -14,27 +14,30 @@
             android:layout_marginTop="140dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/liner_layout"
+            android:textSize="20sp"
+            android:background="@drawable/edit_text_style"
             android:layout_height="wrap_content"
 
-            android:text="SoloTask"/>
+            android:text="Solo tasks"/>
         <Button
             android:id="@+id/ArchiveGroupTask"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/liner_layout"
+            android:textSize="20sp"
+            android:background="@drawable/edit_text_style"
             android:layout_height="wrap_content"
 
-            android:text="GroupTask"/>
+            android:text="Groups of tasks"/>
         <Button
             android:id="@+id/ArchiveCyclicTask"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/liner_layout"
+            android:textSize="20sp"
+            android:background="@drawable/edit_text_style"
             android:layout_height="wrap_content"
-            android:text="CyclicTask"/>
+            android:text="Cyclics tasks"/>
     </TableLayout>
 
 </android.support.constraint.ConstraintLayout>

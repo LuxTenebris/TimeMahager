@@ -6,51 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.mikhailtalancev.myapplication.MainActivity"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="90dp"
-        android:onClick="onclick"
-        android:background="@drawable/liner_layout">
-        <ImageView
-            android:layout_marginTop="5dp"
-            android:id="@+id/avatar_image"
-            android:layout_marginLeft="20dp"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/image"
-            />
-        <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
-            <TextView
-                android:id="@+id/user_name"
-                android:textSize="15sp"
-                android:gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""/>
-            <TextView
-                android:id="@+id/bio"
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""/>
-        </TableLayout>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="380dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/liner_layout">
+        android:layout_marginRight="5dp">
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -58,50 +20,55 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
 
-            android:background="@color/colorGrey"
+            android:background="@drawable/edit_text_style"
             android:layout_marginTop="5dp"
             android:id="@+id/dayTask"
-            android:text="DayTasks"
+            android:text="Today tasks"
             android:layout_width="match_parent"
+            android:textSize="20sp"
+
             android:layout_height="60dp" />
         <Button
-            android:background="@color/colorGrey"
+            android:textSize="20sp"
+
+            android:background="@drawable/edit_text_style"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="15dp"
             android:id="@+id/futureTasks"
-            android:text="FutureTasks"
+            android:text="Future tasks"
             android:layout_width="match_parent"
             android:layout_height="60dp" />
         <Button
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-
-            android:background="@color/colorGrey"
-
+            android:background="@drawable/edit_text_style"
+            android:textSize="20sp"
             android:layout_marginTop="15dp"
             android:id="@+id/groupTask"
-            android:text="GroupTasks"
+            android:text="Groups of tasks"
             android:layout_width="match_parent"
             android:layout_height="60dp" />
         <Button
-            android:background="@color/colorGrey"
+
+            android:background="@drawable/edit_text_style"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-
+            android:textSize="20sp"
             android:layout_marginTop="15dp"
             android:id="@+id/cyclicTask"
-            android:text="CyclicTask"
+            android:text="Cyclics tasks"
             android:layout_width="match_parent"
             android:layout_height="60dp" />
         <Button
-            android:background="@color/colorGrey"
+
+            android:background="@drawable/edit_text_style"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-
+            android:textSize="20sp"
             android:layout_marginTop="15dp"
             android:id="@+id/archive"
-            android:text="Archive"
+            android:text="Archive of groups and tasks"
             android:layout_width="match_parent"
             android:layout_height="60dp" />
         </TableLayout>

@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
 
-        final TextView name = findViewById(id.user_name);
-        final TextView bio = findViewById(id.bio);
-
         btnDay = (Button) findViewById(id.dayTask);
         btnDay.setOnClickListener(this);
         btnFuture = (Button) findViewById(id.futureTasks);
@@ -65,30 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCyclic.setOnClickListener(this);
         btnGroup = (Button) findViewById(id.groupTask);
         btnGroup.setOnClickListener(this);
-
-        db.collection("profile")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            name.setText("YourName");
-                            bio.setText("Bio");
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                name.setText((String) document.get("user_name"));
-                                bio.setText((String) document.get("bio"));
-
-                                Log.d("TAG", document.getId() + " => " + document.get("name"));
-                            }
-
-                        } else {
-                            name.setText("YourName");
-                            bio.setText("Bio");
-                            Log.d("TAG", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
